@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ElectroHub — ელექტრონიკის მაღაზია</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f6f3;
+    --surface: #ffffff;
+    --surface2: #f0efe9;
+    --border: #e2e0d8;
+    --text: #1a1917;
+    --text2: #6b6860;
+    --accent: #e8440a;
+    --accent2: #ff6b35;
+    --accent-light: #fef0eb;
+    --green: #1a7a4a;
+    --green-light: #e8f5ee;
+    --radius: 12px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.07);
+    --shadow-lg: 0 8px 40px rgba(0,0,0,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+
+  .header-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: var(--text);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .logo-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 16px;
+  }
+
+  .search-bar {
+    flex: 1;
+    max-width: 480px;
+    position: relative;
+  }
+
+  .search-bar input {
+    width: 100%;
+    padding: 10px 16px 10px 42px;
+    border: 1.5px solid var(--border);
+    border-radius: 50px;
+    background: var(--bg);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .search-bar input:focus { border-color: var(--accent); }
+
+  .search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text2);
+    font-size: 16px;
+  }
+
+  .header-actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .btn-whatsapp {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    background: #25d366;
+    color: white;
+    border-radius: 50px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-whatsapp:hover { background: #1ebe5d; transform: translateY(-1px); }
+
+  .btn-phone {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 50px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.2s;
+  }
+  .btn-phone:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 60px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, #fef0eb 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-label {
+    display: inline-block;
+    padding: 4px 14px;
+    background: var(--accent-light);
+    color: var(--accent);
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(32px, 5vw, 56px);
+    line-height: 1.1;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .hero h1 span { color: var(--accent); }
+
+  .hero p {
+    color: var(--text2);
+    font-size: 16px;
+    max-width: 480px;
+    margin: 0 auto 32px;
+    line-height: 1.6;
+  }
+
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    color: var(--text);
+  }
+  .stat-label { font-size: 13px; color: var(--text2); margin-top: 2px; }
+
+  /* MAIN LAYOUT */
+  .main-layout {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 32px 24px;
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 28px;
+    align-items: start;
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    position: sticky;
+    top: 88px;
+  }
+
+  .sidebar h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text2);
+    margin-bottom: 12px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .sidebar h3:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+
+  .cat-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 9px 12px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    text-align: left;
+    transition: background 0.15s, color 0.15s;
+    margin-bottom: 2px;
+  }
+
+  .cat-btn:hover { background: var(--bg); }
+  .cat-btn.active { background: var(--accent-light); color: var(--accent); font-weight: 500; }
+
+  .cat-icon { font-size: 16px; width: 20px; text-align: center; }
+
+  .cat-count {
+    margin-left: auto;
+    font-size: 11px;
+    background: var(--surface2);
+    padding: 2px 7px;
+    border-radius: 20px;
+    color: var(--text2);
+  }
+
+  .cat-btn.active .cat-count { background: var(--accent); color: white; }
+
+  /* PRICE RANGE */
+  .price-inputs { display: flex; gap: 8px; }
+  .price-inputs input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--text);
+    background: var(--bg);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .price-inputs input:focus { border-color: var(--accent); }
+
+  /* POWER TYPE */
+  .check-group { display: flex; flex-direction: column; gap: 6px; }
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 0;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .check-item input[type="checkbox"] { accent-color: var(--accent); width: 15px; height: 15px; cursor: pointer; }
+
+  .btn-filter {
+    width: 100%;
+    padding: 11px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 16px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-filter:hover { background: #d03a08; transform: translateY(-1px); }
+
+  .btn-clear {
+    width: 100%;
+    padding: 9px;
+    background: transparent;
+    color: var(--text2);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-clear:hover { border-color: var(--text2); color: var(--text); }
+
+  /* CATALOG */
+  .catalog-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: gap;
+  }
+
+  .catalog-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+  }
+
+  .catalog-count { color: var(--text2); font-size: 14px; margin-top: 2px; }
+
+  .sort-select {
+    padding: 8px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    background: var(--surface);
+    outline: none;
+    cursor: pointer;
+  }
+
+  /* GRID */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 18px;
+  }
+
+  .product-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    cursor: pointer;
+    transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+    animation: fadeUp 0.4s ease both;
+  }
+
+  .product-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-3px);
+    border-color: var(--accent);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .product-img {
+    width: 100%;
+    height: 180px;
+    background: var(--surface2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 56px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .product-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 3px 10px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  .badge-new { background: var(--accent); color: white; }
+  .badge-hot { background: #f59e0b; color: white; }
+  .badge-sale { background: var(--green); color: white; }
+
+  .product-info { padding: 14px 16px 16px; }
+
+  .product-cat {
+    font-size: 11px;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+
+  .product-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.35;
+    margin-bottom: 8px;
+  }
+
+  .product-specs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 10px;
+  }
+
+  .spec-tag {
+    padding: 2px 8px;
+    background: var(--surface2);
+    border-radius: 4px;
+    font-size: 11px;
+    color: var(--text2);
+  }
+
+  .product-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+  }
+
+  .product-price {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--accent);
+  }
+
+  .product-price .currency { font-size: 13px; }
+
+  .btn-order {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 7px 14px;
+    background: #25d366;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-order:hover { background: #1ebe5d; transform: scale(1.03); }
+
+  .empty-state {
+    grid-column: 1/-1;
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--text2);
+  }
+  .empty-state .empty-icon { font-size: 48px; margin-bottom: 12px; }
+  .empty-state h3 { font-family: 'Syne', sans-serif; font-size: 18px; color: var(--text); margin-bottom: 8px; }
+
+  /* MODAL */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(26,25,23,0.55);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s, visibility 0.25s;
+    backdrop-filter: blur(4px);
+  }
+  .modal-overlay.open { opacity: 1; visibility: visible; }
+
+  .modal {
+    background: var(--surface);
+    border-radius: 16px;
+    max-width: 680px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: scale(0.95) translateY(10px);
+    transition: transform 0.25s;
+    box-shadow: var(--shadow-lg);
+  }
+  .modal-overlay.open .modal { transform: scale(1) translateY(0); }
+
+  .modal-img {
+    width: 100%;
+    height: 260px;
+    background: var(--surface2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 100px;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .modal-body { padding: 28px; }
+
+  .modal-cat { font-size: 12px; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 500; }
+
+  .modal-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 26px;
+    margin: 8px 0 16px;
+    line-height: 1.2;
+  }
+
+  .modal-price {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  .modal-desc {
+    font-size: 15px;
+    color: var(--text2);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .modal-specs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .modal-spec {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+  }
+  .modal-spec-label { font-size: 11px; color: var(--text2); text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 3px; }
+  .modal-spec-val { font-size: 14px; font-weight: 500; }
+
+  .modal-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .btn-order-lg {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 24px;
+    background: #25d366;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-order-lg:hover { background: #1ebe5d; transform: translateY(-2px); }
+
+  .btn-call {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 20px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--text);
+    cursor: pointer;
+    background: transparent;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-call:hover { border-color: var(--accent); background: var(--accent-light); color: var(--accent); }
+
+  .modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    background: rgba(255,255,255,0.9);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text2);
+    transition: color 0.2s, background 0.2s;
+    z-index: 10;
+  }
+  .modal-close:hover { color: var(--accent); background: white; }
+  .modal { position: relative; }
+
+  /* FOOTER */
+  footer {
+    background: var(--text);
+    color: rgba(255,255,255,0.9);
+    padding: 48px 24px 24px;
+    margin-top: 60px;
+  }
+
+  .footer-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+
+  .footer-brand .logo { color: white; font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; text-decoration: none; display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+  .footer-brand p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+
+  .footer-col h4 { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.5px; color: white; margin-bottom: 14px; text-transform: uppercase; }
+  .footer-col a { display: block; color: rgba(255,255,255,0.55); font-size: 14px; text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+  .footer-col a:hover { color: white; }
+
+  .footer-bottom {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .whatsapp-fab {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    background: #25d366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 26px;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+    z-index: 99;
+  }
+  .whatsapp-fab:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.5); }
+
+  @media(max-width: 900px) {
+    .main-layout { grid-template-columns: 1fr; }
+    .sidebar { position: static; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+    .hero { padding: 40px 24px; }
+  }
+  @media(max-width: 600px) {
+    .footer-inner { grid-template-columns: 1fr; }
+    .header-inner { gap: 12px; }
+    .search-bar { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">⚡</div>
+      ElectroHub
+    </a>
+    <div class="search-bar">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="ძიება — რაციები, მოდემები, კამერები...">
+    </div>
+    <div class="header-actions">
+      <a href="tel:+995555000000" class="btn-phone">📞 555 000 000</a>
+      <a href="https://wa.me/995555000000" target="_blank" class="btn-whatsapp">
+        <span>📱</span> WhatsApp
+      </a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-label">🇬🇪 საქართველოს #1 ელექტრონიკა</div>
+  <h1>პროფესიონალური<br><span>ტექნიკა</span> თქვენთვის</h1>
+  <p>რაციები, მოდემები, კამერები, ჩიპები და ათასობით სხვა ელექტრო მოწყობილობა — ყველაფერი ერთ ადგილას</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num" id="totalCount">0</div><div class="stat-label">პროდუქტი</div></div>
+    <div class="stat"><div class="stat-num">6</div><div class="stat-label">კატეგორია</div></div>
+    <div class="stat"><div class="stat-num">📦</div><div class="stat-label">სწრაფი მიწოდება</div></div>
+  </div>
+</section>
+
+<div class="main-layout">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h3>კატეგორია</h3>
+    <div id="categoryList"></div>
+
+    <h3>ფასი (₾)</h3>
+    <div class="price-inputs">
+      <input type="number" id="priceMin" placeholder="მინ." min="0">
+      <input type="number" id="priceMax" placeholder="მაქს." min="0">
+    </div>
+
+    <h3>კვება</h3>
+    <div class="check-group">
+      <label class="check-item"><input type="checkbox" class="power-filter" value="battery"> 🔋 ელემენტი</label>
+      <label class="check-item"><input type="checkbox" class="power-filter" value="usb"> 🔌 USB</label>
+      <label class="check-item"><input type="checkbox" class="power-filter" value="sim"> 📶 SIM ბარათი</label>
+      <label class="check-item"><input type="checkbox" class="power-filter" value="ac"> ⚡ ქსელი</label>
+    </div>
+
+    <button class="btn-filter" onclick="applyFilters()">🔍 ფილტრის გამოყენება</button>
+    <button class="btn-clear" onclick="clearFilters()">✕ გასუფთავება</button>
+  </aside>
+
+  <!-- CATALOG -->
+  <main>
+    <div class="catalog-header">
+      <div>
+        <div class="catalog-title" id="catalogTitle">ყველა პროდუქტი</div>
+        <div class="catalog-count" id="catalogCount"></div>
+      </div>
+      <select class="sort-select" id="sortSelect" onchange="renderProducts()">
+        <option value="default">სორტირება</option>
+        <option value="price-asc">ფასი: ↑</option>
+        <option value="price-desc">ფასი: ↓</option>
+        <option value="name-asc">სახელი: A-Z</option>
+      </select>
+    </div>
+    <div class="products-grid" id="productsGrid"></div>
+  </main>
+</div>
+
+<!-- PRODUCT MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modalBox">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-img" id="modalImg"></div>
+    <div class="modal-body">
+      <div class="modal-cat" id="modalCat"></div>
+      <div class="modal-title" id="modalTitle"></div>
+      <div class="modal-price" id="modalPrice"></div>
+      <div class="modal-desc" id="modalDesc"></div>
+      <div class="modal-specs-grid" id="modalSpecs"></div>
+      <div class="modal-actions" id="modalActions"></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="logo">⚡ ElectroHub</a>
+      <p>პროფესიონალური ელექტრო მოწყობილობები საქართველოში. ხარისხი, სანდოობა, სწრაფი მომსახურება.</p>
+    </div>
+    <div class="footer-col">
+      <h4>კატეგორიები</h4>
+      <a href="#">რაციები</a>
+      <a href="#">მოდემები</a>
+      <a href="#">კამერები</a>
+      <a href="#">ჩიპები</a>
+      <a href="#">ადაპტერები</a>
+    </div>
+    <div class="footer-col">
+      <h4>ინფო</h4>
+      <a href="#">ჩვენს შესახებ</a>
+      <a href="#">მიწოდება</a>
+      <a href="#">გარანტია</a>
+      <a href="#">დაბრუნება</a>
+    </div>
+    <div class="footer-col">
+      <h4>კონტაქტი</h4>
+      <a href="tel:+995555000000">📞 555 000 000</a>
+      <a href="https://wa.me/995555000000">💬 WhatsApp</a>
+      <a href="mailto:info@electrohub.ge">✉️ info@electrohub.ge</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 ElectroHub. ყველა უფლება დაცულია.</span>
+    <span>გაკეთებულია 🇬🇪 საქართველოში</span>
+  </div>
+</footer>
+
+<a href="https://wa.me/995555000000?text=გამარჯობა! მინდა შევუკვეთო..." target="_blank" class="whatsapp-fab" title="WhatsApp-ით შეკვეთა">💬</a>
+
+<script>
+// ========== DATA (shared with admin) ==========
+const STORAGE_KEY = 'electrohub_products';
+const PHONE = '995555000000';
+
+const defaultProducts = [
+  { id:1, name:"Baofeng UV-5R რაცია", cat:"რაციები", price:89, emoji:"📻", badge:"hot", power:["battery"], specs:{სიხშირე:"136-174 / 400-520 MHz", სიმძლავრე:"5W", ბატარეა:"1800mAh", წონა:"230გ"}, desc:"პროფესიონალური dual-band რაცია, ორმხრივი კავშირისთვის. იდეალურია ორგანიზაციებისთვის, სამრეწველო გამოყენებისა და სარეკრეაციო საქმიანობისთვის. 16 კანალი, CTCSS/DCS სკანირება." },
+  { id:2, name:"Quansheng UV-K5 რაცია", cat:"რაციები", price:120, emoji:"📻", badge:"new", power:["battery"], specs:{სიხშირე:"50-600 MHz", სიმძლავრე:"5W", კანალები:"200", განახლება:"Chirp"}, desc:"უახლესი და ყველაზე პოპულარული amateur radio მოწყობილობა. ფართო სიხშირის დიაპაზონი, Firmware განახლება შესაძლებელია." },
+  { id:3, name:"4G LTE SIM მოდემი Huawei E3372", cat:"მოდემები", price:75, emoji:"📡", badge:"", power:["usb","sim"], specs:{სიჩქარე:"150 Mbps", ინტერფეისი:"USB 2.0", სიმბარათი:"nano-SIM", OS:"Windows/Mac"}, desc:"სწრაფი 4G LTE მოდემი USB ინტერფეისით. მუშაობს ყველა ქართულ ოპერატორთან. Plug & Play, დაყენება საჭირო არ არის." },
+  { id:4, name:"4G Wi-Fi Router SIM ბარათზე", cat:"მოდემები", price:145, emoji:"📶", badge:"hot", power:["battery","sim"], specs:{სიხშირე:"4G/LTE Cat4", Wi_Fi:"802.11b/g/n", კლიენტი:"32 მოწყობილობა", ბატარეა:"3000mAh"}, desc:"პორტატული Wi-Fi როუტერი ჩაშენებული ბატარეით. 4G/LTE კავშირი SIM ბარათით, ქმნის Wi-Fi ქსელს 32 მოწყობილობისთვის. 8 საათამდე მუშაობა." },
+  { id:5, name:"IP კამერა Dahua 4MP", cat:"კამერები", price:95, emoji:"📷", badge:"", power:["ac"], specs:{გარჩევადობა:"4MP 2560×1440", IR:"30 მეტრი", ობიექტივი:"2.8mm", ამინდგამძლე:"IP67"}, desc:"გარე IP კამერა მაღალი გარჩევადობით. ღამის ხედვა 30 მეტრამდე, IP67 ამინდგამძლეობა, ONVIF, RTSP." },
+  { id:6, name:"PTZ კამერა 30x Zoom", cat:"კამერები", price:380, emoji:"🎥", badge:"new", power:["ac"], specs:{ზუმი:"30x ოპტიკური", გარჩევადობა:"1080P Full HD", ბრუნვა:"360°", პროტოკოლი:"PELCO-D/P"}, desc:"პანო-ტილტ-ზუმ კამერა პრო გამოყენებისთვის. 30x ოპტიკური ზუმი, სრული 360° ბრუნვა, RS485 კონტროლი." },
+  { id:7, name:"ESP32 მიკროკონტროლერი", cat:"ჩიპები", price:18, emoji:"🔧", badge:"", power:["usb"], specs:{CPU:"Xtensa LX6 240MHz", Wi_Fi:"802.11 b/g/n", Bluetooth:"4.2 BLE", GPIO:"34 პინი"}, desc:"ყველაზე პოპულარული IoT მიკროკონტროლერი ჩაშენებული Wi-Fi და Bluetooth-ით. Arduino IDE თავსებადი." },
+  { id:8, name:"Raspberry Pi 4 Model B 4GB", cat:"ჩიპები", price:220, emoji:"💻", badge:"hot", power:["usb"], specs:{CPU:"Cortex-A72 1.8GHz", RAM:"4GB LPDDR4", Wi_Fi:"dual-band", USB:"2x USB3.0"}, desc:"მინი კომპიუტერი Linux OS-ით. იდეალური სერვერი, მედია ცენტრი, სამრეწველო კონტროლი, IoT პროექტები." },
+  { id:9, name:"USB-C PD ადაპტერი 65W", cat:"ადაპტერები", price:35, emoji:"🔌", badge:"", power:["ac"], specs:{სიმძლავრე:"65W", სტანდარტი:"PD 3.0 / QC4+", კონექტორი:"USB-C", ეფექტ:"93%"}, desc:"სწრაფი დამტენი Power Delivery 3.0 სტანდარტით. ნოუთბუქები, ტელეფონები, ტაბლეტები. ჭარბი სითბოსგან დაცვა." },
+  { id:10, name:"RS232 to USB ადაპტერი", cat:"ადაპტერები", price:22, emoji:"🔗", badge:"", power:["usb"], specs:{ჩიპი:"CH340G", სიჩქარე:"921600 bps", OS:"Win/Mac/Linux", გარანტია:"1 წელი"}, desc:"სერიული RS232 პორტის USB-ზე გადამყვანი. ინდუსტრიული მოწყობილობების, PLC-ების, GPS-ების კომპიუტერთან დასაკავშირებლად." },
+  { id:11, name:"18650 Li-Ion 3000mAh", cat:"სხვა", price:12, emoji:"🔋", badge:"sale", power:["battery"], specs:{ტევადობა:"3000mAh", ძაბვა:"3.7V", დენი:"20A", ციკლი:">500"}, desc:"მაღალი ხარისხის 18650 ფორმატის ლითიუმ-იონური ელემენტი. ელ. სამსახურებისთვის, ჯიბურები, ელ. ხელსაწყოები." },
+  { id:12, name:"ანტენა Yagi 433MHz", cat:"სხვა", price:45, emoji:"📡", badge:"", power:[], specs:{სიხშირე:"433 MHz", გაძლიერება:"10 dBi", პოლარიზაცია:"ხაზოვანი", კონექტორი:"SMA-female"}, desc:"მაღალი გაძლიერების მიმართული ანტენა 433MHz სიხშირეზე. LoRa, ISM, RC სისტემებისთვის. 50 ოჰმი." },
+];
+
+function loadProducts() {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  return saved ? JSON.parse(saved) : defaultProducts;
+}
+
+// ========== STATE ==========
+let allProducts = loadProducts();
+let filteredProducts = [...allProducts];
+let activeCategory = 'all';
+
+// ========== CATEGORIES ==========
+const categories = [
+  { key:'all', label:'ყველა', icon:'🏪' },
+  { key:'რაციები', label:'რაციები', icon:'📻' },
+  { key:'მოდემები', label:'მოდემები', icon:'📡' },
+  { key:'კამერები', label:'კამერები', icon:'📷' },
+  { key:'ჩიპები', label:'ჩიპები & მიკროკონტ.', icon:'🔧' },
+  { key:'ადაპტერები', label:'ადაპტერები', icon:'🔌' },
+  { key:'სხვა', label:'სხვა', icon:'📦' },
+];
+
+function buildSidebar() {
+  const prods = loadProducts();
+  allProducts = prods;
+  const el = document.getElementById('categoryList');
+  el.innerHTML = categories.map(c => {
+    const count = c.key === 'all' ? prods.length : prods.filter(p => p.cat === c.key).length;
+    return `<button class="cat-btn ${activeCategory===c.key?'active':''}" onclick="setCategory('${c.key}')">
+      <span class="cat-icon">${c.icon}</span> ${c.label}
+      <span class="cat-count">${count}</span>
+    </button>`;
+  }).join('');
+  document.getElementById('totalCount').textContent = prods.length;
+}
+
+function setCategory(key) {
+  activeCategory = key;
+  buildSidebar();
+  applyFilters();
+}
+
+// ========== FILTERS ==========
+function applyFilters() {
+  allProducts = loadProducts();
+  let prods = [...allProducts];
+
+  if(activeCategory !== 'all') prods = prods.filter(p => p.cat === activeCategory);
+
+  const search = document.getElementById('searchInput').value.trim().toLowerCase();
+  if(search) prods = prods.filter(p => p.name.toLowerCase().includes(search) || p.cat.toLowerCase().includes(search));
+
+  const minP = parseFloat(document.getElementById('priceMin').value);
+  const maxP = parseFloat(document.getElementById('priceMax').value);
+  if(!isNaN(minP)) prods = prods.filter(p => p.price >= minP);
+  if(!isNaN(maxP)) prods = prods.filter(p => p.price <= maxP);
+
+  const checkedPower = [...document.querySelectorAll('.power-filter:checked')].map(el => el.value);
+  if(checkedPower.length > 0) prods = prods.filter(p => checkedPower.some(pw => p.power.includes(pw)));
+
+  filteredProducts = prods;
+  renderProducts();
+}
+
+function clearFilters() {
+  document.getElementById('priceMin').value = '';
+  document.getElementById('priceMax').value = '';
+  document.querySelectorAll('.power-filter').forEach(el => el.checked = false);
+  document.getElementById('searchInput').value = '';
+  activeCategory = 'all';
+  buildSidebar();
+  applyFilters();
+}
+
+// ========== RENDER ==========
+function renderProducts() {
+  const sort = document.getElementById('sortSelect').value;
+  let prods = [...filteredProducts];
+
+  if(sort === 'price-asc') prods.sort((a,b) => a.price - b.price);
+  else if(sort === 'price-desc') prods.sort((a,b) => b.price - a.price);
+  else if(sort === 'name-asc') prods.sort((a,b) => a.name.localeCompare(b.name));
+
+  const grid = document.getElementById('productsGrid');
+  const catLabel = activeCategory === 'all' ? 'ყველა პროდუქტი' : activeCategory;
+  document.getElementById('catalogTitle').textContent = catLabel;
+  document.getElementById('catalogCount').textContent = `${prods.length} პროდუქტი`;
+
+  if(!prods.length) {
+    grid.innerHTML = `<div class="empty-state"><div class="empty-icon">🔍</div><h3>პროდუქტი ვერ მოიძებნა</h3><p>სხვა ფილტრები სცადეთ</p></div>`;
+    return;
+  }
+
+  grid.innerHTML = prods.map((p, i) => {
+    const badge = p.badge ? `<div class="product-badge badge-${p.badge}">${p.badge==='new'?'ახალი':p.badge==='hot'?'პოპ':p.badge==='sale'?'ფასდაკლ.':''}</div>` : '';
+    const specTags = Object.entries(p.specs||{}).slice(0,3).map(([k,v]) => `<span class="spec-tag">${v}</span>`).join('');
+    const wa = `https://wa.me/${PHONE}?text=${encodeURIComponent('გამარჯობა! მინდა შეუკვეთო: '+p.name+' — '+p.price+'₾')}`;
+    return `<div class="product-card" style="animation-delay:${i*0.04}s" onclick="openModal(${p.id})">
+      <div class="product-img">${p.emoji}${badge}</div>
+      <div class="product-info">
+        <div class="product-cat">${p.cat}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-specs">${specTags}</div>
+        <div class="product-footer">
+          <div class="product-price"><span class="currency">₾</span>${p.price}</div>
+          <a href="${wa}" target="_blank" class="btn-order" onclick="event.stopPropagation()">💬 შეკვეთა</a>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ========== MODAL ==========
+function openModal(id) {
+  const p = allProducts.find(x => x.id === id);
+  if(!p) return;
+  document.getElementById('modalImg').textContent = p.emoji;
+  document.getElementById('modalCat').textContent = p.cat;
+  document.getElementById('modalTitle').textContent = p.name;
+  document.getElementById('modalPrice').textContent = `₾${p.price}`;
+  document.getElementById('modalDesc').textContent = p.desc;
+  document.getElementById('modalSpecs').innerHTML = Object.entries(p.specs||{}).map(([k,v]) =>
+    `<div class="modal-spec"><div class="modal-spec-label">${k}</div><div class="modal-spec-val">${v}</div></div>`
+  ).join('');
+  const wa = `https://wa.me/${PHONE}?text=${encodeURIComponent('გამარჯობა! მინდა შევუკვეთო: '+p.name+' — '+p.price+'₾')}`;
+  document.getElementById('modalActions').innerHTML = `
+    <a href="${wa}" target="_blank" class="btn-order-lg">💬 WhatsApp-ით შეკვეთა</a>
+    <a href="tel:+${PHONE}" class="btn-call">📞 დარეკვა</a>
+  `;
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(e) {
+  if(!e || e.target === document.getElementById('modalOverlay') || !e.target) {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+document.getElementById('searchInput').addEventListener('input', applyFilters);
+
+// ========== INIT ==========
+buildSidebar();
+applyFilters();
+
+// Reload if admin made changes
+window.addEventListener('focus', () => { buildSidebar(); applyFilters(); });
+</script>
+</body>
+</html>
