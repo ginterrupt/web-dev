@@ -5,855 +5,473 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ElectroHub — ელექტრონიკის მაღაზია</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
   :root {
-    --bg: #f7f6f3;
-    --surface: #ffffff;
-    --surface2: #f0efe9;
-    --border: #e2e0d8;
-    --text: #1a1917;
-    --text2: #6b6860;
     --accent: #e8440a;
-    --accent2: #ff6b35;
     --accent-light: #fef0eb;
     --green: #1a7a4a;
-    --green-light: #e8f5ee;
-    --radius: 12px;
-    --shadow: 0 2px 12px rgba(0,0,0,0.07);
-    --shadow-lg: 0 8px 40px rgba(0,0,0,0.12);
+    --nav-bg: #0d0d0d;
+    --surface: #ffffff;
+    --bg: #f4f5f7;
+    --border: #e2e0d8;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Space Grotesk', sans-serif; background: var(--bg); color: #1a1917; }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-  }
+  .font-tech { font-family: 'Orbitron', sans-serif; }
 
-  /* HEADER */
-  header {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    backdrop-filter: blur(10px);
-  }
+  /* ── NAVBAR ───────────────────────────────── */
+  .site-nav { background: var(--nav-bg); z-index: 100; }
 
-  .header-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 24px;
-    height: 68px;
-    display: flex;
-    align-items: center;
-    gap: 32px;
-  }
-
-  .logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 22px;
-    color: var(--text);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  .navbar-brand {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 800; font-size: 18px;
+    color: #fff; letter-spacing: 1px;
     flex-shrink: 0;
   }
+  .navbar-brand:hover { color: #fff; }
 
   .logo-icon {
-    width: 32px;
-    height: 32px;
-    background: var(--accent);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 16px;
+    width: 32px; height: 32px;
+    background: var(--accent); border-radius: 6px;
+    display: inline-flex; align-items: center; justify-content: center;
+    color: white; font-size: 16px; flex-shrink: 0;
   }
 
-  .search-bar {
-    flex: 1;
-    max-width: 480px;
-    position: relative;
+  /* ── HERO ─────────────────────────────────── */
+  .hero-section {
+    background: var(--nav-bg);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    position: relative; overflow: hidden;
   }
-
-  .search-bar input {
-    width: 100%;
-    padding: 10px 16px 10px 42px;
-    border: 1.5px solid var(--border);
-    border-radius: 50px;
-    background: var(--bg);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    color: var(--text);
-    outline: none;
-    transition: border-color 0.2s;
-  }
-
-  .search-bar input:focus { border-color: var(--accent); }
-
-  .search-icon {
-    position: absolute;
-    left: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--text2);
-    font-size: 16px;
-  }
-
-  .header-actions {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .btn-whatsapp {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 9px 18px;
-    background: #25d366;
-    color: white;
-    border-radius: 50px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    text-decoration: none;
-    transition: background 0.2s, transform 0.15s;
-  }
-
-  .btn-whatsapp:hover { background: #1ebe5d; transform: translateY(-1px); }
-
-  .btn-phone {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 9px 16px;
-    border: 1.5px solid var(--border);
-    border-radius: 50px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    text-decoration: none;
-    color: var(--text);
-    transition: border-color 0.2s;
-  }
-  .btn-phone:hover { border-color: var(--accent); color: var(--accent); }
-
-  /* HERO */
-  .hero {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    padding: 60px 24px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
+  .hero-section::before {
     content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 50% 0%, #fef0eb 0%, transparent 70%);
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 80% at 50% 100%, rgba(232,68,10,0.15) 0%, transparent 70%);
     pointer-events: none;
   }
-
   .hero-label {
-    display: inline-block;
-    padding: 4px 14px;
-    background: var(--accent-light);
-    color: var(--accent);
-    border-radius: 50px;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    margin-bottom: 16px;
-    text-transform: uppercase;
+    display: inline-block; padding: 4px 14px;
+    background: rgba(232,68,10,0.15); color: var(--accent);
+    border: 1px solid rgba(232,68,10,0.3);
+    border-radius: 4px; font-size: 11px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    font-family: 'Orbitron', sans-serif;
+  }
+  .hero-title {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 800; line-height: 1.1; color: #fff;
+    font-size: clamp(26px, 4vw, 52px);
+  }
+  .hero-title span { color: var(--accent); }
+  .hero-sub { color: rgba(255,255,255,0.5); font-size: 15px; line-height: 1.7; }
+  .stat-num { font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 26px; color: #fff; }
+  .stat-label { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 3px; letter-spacing: 0.5px; }
+
+  /* ── SIDEBAR ──────────────────────────────── */
+
+  /* On desktop: override offcanvas to be static */
+  /* offcanvas-start sets an explicit px width; override to 100% inside col-lg-3 on desktop */
+  @media (min-width: 992px) {
+    #filterSidebar { width: 100% !important; position: sticky; top: 76px; }
   }
 
-  .hero h1 {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: clamp(32px, 5vw, 56px);
-    line-height: 1.1;
-    margin-bottom: 16px;
-    position: relative;
-  }
-
-  .hero h1 span { color: var(--accent); }
-
-  .hero p {
-    color: var(--text2);
-    font-size: 16px;
-    max-width: 480px;
-    margin: 0 auto 32px;
-    line-height: 1.6;
-  }
-
-  .hero-stats {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    flex-wrap: wrap;
-  }
-
-  .stat { text-align: center; }
-  .stat-num {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 28px;
-    color: var(--text);
-  }
-  .stat-label { font-size: 13px; color: var(--text2); margin-top: 2px; }
-
-  /* MAIN LAYOUT */
-  .main-layout {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 32px 24px;
-    display: grid;
-    grid-template-columns: 260px 1fr;
-    gap: 28px;
-    align-items: start;
-  }
-
-  /* SIDEBAR */
-  .sidebar {
-    background: var(--surface);
+  /* Light sidebar panel */
+  .sidebar-panel {
+    background: #fff;
+    border-radius: 12px;
     border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 20px;
-    position: sticky;
-    top: 88px;
+    overflow: hidden;
   }
 
-  .sidebar h3 {
-    font-family: 'Syne', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--text2);
-    margin-bottom: 12px;
-    margin-top: 20px;
-    padding-top: 20px;
+  /* Section labels */
+  .sidebar-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 8px; font-weight: 700;
+    letter-spacing: 2.5px; text-transform: uppercase;
+    color: #aaa;
+    padding: 18px 16px 8px;
+    display: block;
+  }
+  .sidebar-label:first-child { padding-top: 16px; }
+
+  .sidebar-divider {
+    border: none;
     border-top: 1px solid var(--border);
+    margin: 6px 0;
   }
 
-  .sidebar h3:first-child { margin-top: 0; padding-top: 0; border-top: none; }
-
+  /* Category buttons */
   .cat-btn {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-    padding: 9px 12px;
-    border: none;
-    border-radius: 8px;
-    background: transparent;
-    cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    color: var(--text);
-    text-align: left;
-    transition: background 0.15s, color 0.15s;
-    margin-bottom: 2px;
+    display: flex; align-items: center; gap: 10px;
+    width: 100%; padding: 10px 16px;
+    border: none; border-left: 2px solid transparent;
+    background: transparent; cursor: pointer;
+    font-family: 'Space Grotesk', sans-serif; font-size: 13px;
+    color: #555; text-align: left;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    margin: 0;
   }
-
-  .cat-btn:hover { background: var(--bg); }
-  .cat-btn.active { background: var(--accent-light); color: var(--accent); font-weight: 500; }
-
-  .cat-icon { font-size: 16px; width: 20px; text-align: center; }
-
+  .cat-btn:hover { background: var(--bg); color: #1a1917; border-left-color: #ddd; }
+  .cat-btn.active {
+    background: var(--accent-light);
+    color: var(--accent); font-weight: 600;
+    border-left-color: var(--accent);
+  }
+  .cat-icon { font-size: 14px; width: 18px; text-align: center; flex-shrink: 0; opacity: 0.8; }
+  .cat-btn.active .cat-icon { opacity: 1; }
   .cat-count {
-    margin-left: auto;
-    font-size: 11px;
-    background: var(--surface2);
-    padding: 2px 7px;
-    border-radius: 20px;
-    color: var(--text2);
+    margin-left: auto; font-size: 10px; font-family: 'Orbitron', sans-serif;
+    color: #bbb; letter-spacing: 0.5px;
   }
+  .cat-btn.active .cat-count { color: var(--accent); }
 
-  .cat-btn.active .cat-count { background: var(--accent); color: white; }
-
-  /* PRICE RANGE */
-  .price-inputs { display: flex; gap: 8px; }
-  .price-inputs input {
-    width: 100%;
-    padding: 8px 10px;
-    border: 1.5px solid var(--border);
-    border-radius: 8px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    color: var(--text);
+  /* Sidebar inputs */
+  .sidebar-panel .form-control {
     background: var(--bg);
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  .price-inputs input:focus { border-color: var(--accent); }
-
-  /* POWER TYPE */
-  .check-group { display: flex; flex-direction: column; gap: 6px; }
-  .check-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 7px 0;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  .check-item input[type="checkbox"] { accent-color: var(--accent); width: 15px; height: 15px; cursor: pointer; }
-
-  .btn-filter {
-    width: 100%;
-    padding: 11px;
-    background: var(--accent);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    margin-top: 16px;
-    transition: background 0.2s, transform 0.15s;
-  }
-  .btn-filter:hover { background: #d03a08; transform: translateY(-1px); }
-
-  .btn-clear {
-    width: 100%;
-    padding: 9px;
-    background: transparent;
-    color: var(--text2);
     border: 1.5px solid var(--border);
-    border-radius: 8px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    cursor: pointer;
-    margin-top: 8px;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .btn-clear:hover { border-color: var(--text2); color: var(--text); }
-
-  /* CATALOG */
-  .catalog-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    flex-wrap: gap;
-  }
-
-  .catalog-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 20px;
-  }
-
-  .catalog-count { color: var(--text2); font-size: 14px; margin-top: 2px; }
-
-  .sort-select {
-    padding: 8px 14px;
-    border: 1.5px solid var(--border);
-    border-radius: 8px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    color: var(--text);
-    background: var(--surface);
-    outline: none;
-    cursor: pointer;
-  }
-
-  /* GRID */
-  .products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 18px;
-  }
-
-  .product-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    overflow: hidden;
-    cursor: pointer;
-    transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
-    animation: fadeUp 0.4s ease both;
-  }
-
-  .product-card:hover {
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-3px);
-    border-color: var(--accent);
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .product-img {
-    width: 100%;
-    height: 180px;
-    background: var(--surface2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 56px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .product-badge {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    padding: 3px 10px;
-    border-radius: 50px;
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
-  }
-  .badge-new { background: var(--accent); color: white; }
-  .badge-hot { background: #f59e0b; color: white; }
-  .badge-sale { background: var(--green); color: white; }
-
-  .product-info { padding: 14px 16px 16px; }
-
-  .product-cat {
-    font-size: 11px;
-    color: var(--text2);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 5px;
-    font-weight: 500;
-  }
-
-  .product-name {
-    font-family: 'Syne', sans-serif;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 1.35;
-    margin-bottom: 8px;
-  }
-
-  .product-specs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-    margin-bottom: 10px;
-  }
-
-  .spec-tag {
-    padding: 2px 8px;
-    background: var(--surface2);
-    border-radius: 4px;
-    font-size: 11px;
-    color: var(--text2);
-  }
-
-  .product-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 12px;
-    padding-top: 12px;
-    border-top: 1px solid var(--border);
-  }
-
-  .product-price {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 18px;
-    color: var(--accent);
-  }
-
-  .product-price .currency { font-size: 13px; }
-
-  .btn-order {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding: 7px 14px;
-    background: #25d366;
-    color: white;
-    border: none;
+    color: #1a1917;
+    font-family: 'Space Grotesk', sans-serif; font-size: 13px;
     border-radius: 6px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background 0.2s, transform 0.15s;
   }
-  .btn-order:hover { background: #1ebe5d; transform: scale(1.03); }
-
-  .empty-state {
-    grid-column: 1/-1;
-    text-align: center;
-    padding: 80px 20px;
-    color: var(--text2);
+  .sidebar-panel .form-control:focus {
+    background: #fff;
+    border-color: var(--accent);
+    color: #1a1917;
+    box-shadow: 0 0 0 0.2rem rgba(232,68,10,0.12);
   }
-  .empty-state .empty-icon { font-size: 48px; margin-bottom: 12px; }
-  .empty-state h3 { font-family: 'Syne', sans-serif; font-size: 18px; color: var(--text); margin-bottom: 8px; }
 
-  /* MODAL */
+  /* Sidebar checkboxes */
+  .sidebar-panel .form-check-label { color: #555; font-size: 13px; cursor: pointer; }
+  .sidebar-panel .form-check-label:hover { color: #1a1917; }
+
+  /* Sidebar action buttons */
+  .sidebar-panel .btn-apply {
+    width: 100%; padding: 11px;
+    background: var(--accent); color: white; border: none;
+    font-family: 'Orbitron', sans-serif; font-size: 10px;
+    font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+    border-radius: 0; cursor: pointer; transition: background 0.2s;
+  }
+  .sidebar-panel .btn-apply:hover { background: #d03a08; }
+  .sidebar-panel .btn-clear {
+    width: 100%; padding: 9px;
+    background: transparent; color: #aaa;
+    border: none; border-top: 1px solid var(--border);
+    font-family: 'Space Grotesk', sans-serif; font-size: 12px;
+    cursor: pointer; transition: color 0.2s;
+  }
+  .sidebar-panel .btn-clear:hover { color: #555; }
+
+  /* Checkboxes accent */
+  .form-check-input:checked { background-color: var(--accent); border-color: var(--accent); }
+  .form-check-input:focus { box-shadow: 0 0 0 0.2rem rgba(232,68,10,0.2); border-color: var(--accent); }
+
+  /* Form focus accent */
+  .form-control:focus, .form-select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 0.2rem rgba(232,68,10,0.15);
+  }
+
+  /* Buttons */
+  .btn-accent { background: var(--accent); color: white; border: none; font-family: 'Space Grotesk', sans-serif; }
+  .btn-accent:hover { background: #d03a08; color: white; }
+  .btn-wa { background: #25d366; color: white; border: none; }
+  .btn-wa:hover, .btn-wa:active { background: #1ebe5d; color: white; }
+
+  /* ── CATALOG ──────────────────────────────── */
+  .catalog-title { font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 16px; letter-spacing: 0.5px; }
+
+  /* ── PRODUCT CARD ─────────────────────────── */
+  .product-card {
+    border: 1px solid var(--border) !important;
+    transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s !important;
+    cursor: pointer; animation: fadeUp 0.4s ease both;
+    background: var(--surface);
+  }
+  .product-card:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1) !important;
+    transform: translateY(-3px);
+    border-color: var(--accent) !important;
+  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+  .product-img-area {
+    height: 170px; background: #f0f1f3;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 54px; position: relative; overflow: hidden;
+  }
+
+  .product-cat { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: #888; font-weight: 600; }
+  .product-name { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 14px; line-height: 1.4; }
+  .product-price { font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 17px; color: var(--accent); }
+
+  /* Badges */
+  .badge-new { background: var(--accent) !important; font-family: 'Orbitron', sans-serif; font-size: 9px !important; letter-spacing: 1px; }
+  .badge-hot { background: #f59e0b !important; font-family: 'Orbitron', sans-serif; font-size: 9px !important; letter-spacing: 1px; }
+  .badge-sale { background: var(--green) !important; font-family: 'Orbitron', sans-serif; font-size: 9px !important; letter-spacing: 1px; }
+
+  /* Spec tags */
+  .spec-tag { padding: 2px 7px; background: #f0f1f3; border-radius: 4px; font-size: 10px; color: #666; font-family: 'Space Grotesk', sans-serif; }
+
+  /* ── MODAL ────────────────────────────────── */
   .modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(26,25,23,0.55);
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    opacity: 0;
-    visibility: hidden;
+    position: fixed; inset: 0;
+    background: rgba(13,13,13,0.7);
+    z-index: 1050;
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px; opacity: 0; visibility: hidden;
     transition: opacity 0.25s, visibility 0.25s;
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(6px);
   }
   .modal-overlay.open { opacity: 1; visibility: visible; }
-
-  .modal {
-    background: var(--surface);
-    border-radius: 16px;
-    max-width: 680px;
-    width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
+  .modal-box {
+    background: var(--surface); border-radius: 16px;
+    max-width: 680px; width: 100%;
+    max-height: 90vh; overflow-y: auto;
     transform: scale(0.95) translateY(10px);
     transition: transform 0.25s;
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 24px 64px rgba(0,0,0,0.2);
+    position: relative;
   }
-  .modal-overlay.open .modal { transform: scale(1) translateY(0); }
-
-  .modal-img {
-    width: 100%;
-    height: 260px;
-    background: var(--surface2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 100px;
-    border-radius: 16px 16px 0 0;
+  .modal-overlay.open .modal-box { transform: scale(1) translateY(0); }
+  .modal-img-area {
+    width: 100%; height: 240px; background: #f0f1f3;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 90px; border-radius: 16px 16px 0 0;
   }
-
-  .modal-body { padding: 28px; }
-
-  .modal-cat { font-size: 12px; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 500; }
-
-  .modal-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 26px;
-    margin: 8px 0 16px;
-    line-height: 1.2;
+  .modal-close-btn {
+    position: absolute; top: 14px; right: 14px;
+    width: 34px; height: 34px; background: rgba(255,255,255,0.95);
+    border: 1px solid var(--border); border-radius: 50%;
+    font-size: 16px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    color: #666; transition: color 0.2s, background 0.2s; z-index: 10;
   }
-
-  .modal-price {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 32px;
-    color: var(--accent);
-    margin-bottom: 20px;
-  }
-
-  .modal-desc {
-    font-size: 15px;
-    color: var(--text2);
-    line-height: 1.7;
-    margin-bottom: 20px;
-  }
-
-  .modal-specs-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-bottom: 24px;
-  }
-
-  .modal-spec {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 10px 14px;
-  }
-  .modal-spec-label { font-size: 11px; color: var(--text2); text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 3px; }
+  .modal-close-btn:hover { color: var(--accent); background: white; }
+  .modal-price { font-family: 'Orbitron', sans-serif; font-weight: 800; font-size: 30px; color: var(--accent); }
+  .modal-spec { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; height: 100%; }
+  .modal-spec-label { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; font-family: 'Orbitron', sans-serif; }
   .modal-spec-val { font-size: 14px; font-weight: 500; }
 
-  .modal-actions {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
+  /* ── FOOTER ───────────────────────────────── */
+  footer { background: var(--nav-bg); }
+  footer a { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+  footer a:hover { color: white; }
+  .footer-heading { font-family: 'Orbitron', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px; color: rgba(255,255,255,0.6); text-transform: uppercase; }
 
-  .btn-order-lg {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 14px 24px;
-    background: #25d366;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    font-weight: 500;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background 0.2s, transform 0.15s;
-  }
-  .btn-order-lg:hover { background: #1ebe5d; transform: translateY(-2px); }
-
-  .btn-call {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 14px 20px;
-    border: 1.5px solid var(--border);
-    border-radius: 10px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    font-weight: 500;
-    text-decoration: none;
-    color: var(--text);
-    cursor: pointer;
-    background: transparent;
-    transition: border-color 0.2s, background 0.2s;
-  }
-  .btn-call:hover { border-color: var(--accent); background: var(--accent-light); color: var(--accent); }
-
-  .modal-close {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    width: 36px;
-    height: 36px;
-    background: rgba(255,255,255,0.9);
-    border: 1px solid var(--border);
-    border-radius: 50%;
-    font-size: 18px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text2);
-    transition: color 0.2s, background 0.2s;
-    z-index: 10;
-  }
-  .modal-close:hover { color: var(--accent); background: white; }
-  .modal { position: relative; }
-
-  /* FOOTER */
-  footer {
-    background: var(--text);
-    color: rgba(255,255,255,0.9);
-    padding: 48px 24px 24px;
-    margin-top: 60px;
-  }
-
-  .footer-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1fr;
-    gap: 40px;
-    margin-bottom: 40px;
-  }
-
-  .footer-brand .logo { color: white; font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; text-decoration: none; display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
-  .footer-brand p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.6; }
-
-  .footer-col h4 { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.5px; color: white; margin-bottom: 14px; text-transform: uppercase; }
-  .footer-col a { display: block; color: rgba(255,255,255,0.55); font-size: 14px; text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
-  .footer-col a:hover { color: white; }
-
-  .footer-bottom {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding-top: 24px;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 13px;
-    color: rgba(255,255,255,0.4);
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
+  /* ── FAB ──────────────────────────────────── */
   .whatsapp-fab {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    width: 56px;
-    height: 56px;
-    background: #25d366;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 26px;
-    text-decoration: none;
+    position: fixed; bottom: 24px; right: 24px;
+    width: 54px; height: 54px; background: #25d366;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 24px; text-decoration: none;
     box-shadow: 0 4px 20px rgba(37,211,102,0.4);
-    transition: transform 0.2s, box-shadow 0.2s;
-    z-index: 99;
+    transition: transform 0.2s, box-shadow 0.2s; z-index: 99;
   }
-  .whatsapp-fab:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.5); }
+  .whatsapp-fab:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.5); color: white; }
 
-  @media(max-width: 900px) {
-    .main-layout { grid-template-columns: 1fr; }
-    .sidebar { position: static; }
-    .footer-inner { grid-template-columns: 1fr 1fr; }
-    .hero { padding: 40px 24px; }
-  }
-  @media(max-width: 600px) {
-    .footer-inner { grid-template-columns: 1fr; }
-    .header-inner { gap: 12px; }
-    .search-bar { display: none; }
-  }
+  /* ── EMPTY STATE ──────────────────────────── */
+  .empty-state { text-align: center; padding: 80px 20px; color: #888; }
+  .empty-state h3 { font-family: 'Orbitron', sans-serif; font-size: 16px; color: #1a1917; margin-bottom: 8px; }
+
+  /* ── MISC ─────────────────────────────────── */
+  hr { opacity: 1; }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="header-inner">
-    <a href="#" class="logo">
+<!-- ══ NAVBAR ════════════════════════════════════════ -->
+<nav class="site-nav navbar sticky-top py-0">
+  <div class="container-xl d-flex flex-wrap align-items-center py-2 py-lg-0 gap-lg-0" style="min-height:64px">
+
+    <!-- Logo -->
+    <a href="#" class="navbar-brand d-flex align-items-center gap-2 order-1 me-3 py-0">
       <div class="logo-icon">⚡</div>
       ElectroHub
     </a>
-    <div class="search-bar">
-      <span class="search-icon">🔍</span>
-      <input type="text" id="searchInput" placeholder="ძიება — რაციები, მოდემები, კამერები...">
-    </div>
-    <div class="header-actions">
-      <a href="tel:+995555000000" class="btn-phone">📞 555 000 000</a>
-      <a href="https://wa.me/995555000000" target="_blank" class="btn-whatsapp">
-        <span>📱</span> WhatsApp
-      </a>
-    </div>
-  </div>
-</header>
 
-<section class="hero">
-  <div class="hero-label">🇬🇪 საქართველოს #1 ელექტრონიკა</div>
-  <h1>პროფესიონალური<br><span>ტექნიკა</span> თქვენთვის</h1>
-  <p>რაციები, მოდემები, კამერები, ჩიპები და ათასობით სხვა ელექტრო მოწყობილობა — ყველაფერი ერთ ადგილას</p>
-  <div class="hero-stats">
-    <div class="stat"><div class="stat-num" id="totalCount">0</div><div class="stat-label">პროდუქტი</div></div>
-    <div class="stat"><div class="stat-num">6</div><div class="stat-label">კატეგორია</div></div>
-    <div class="stat"><div class="stat-num">📦</div><div class="stat-label">სწრაფი მიწოდება</div></div>
+  </div>
+</nav>
+
+<!-- ══ HERO ══════════════════════════════════════════ -->
+<section class="hero-section py-5 text-center">
+  <div class="position-relative py-2">
+    <div class="hero-label mb-3">GE · electronics · store</div>
+    <h1 class="hero-title mb-3">
+      პროფესიონალური<br><span>ტექნიკა</span> თქვენთვის
+    </h1>
+    <p class="hero-sub mx-auto mb-4" style="max-width:460px">
+      რაციები, მოდემები, კამერები, ჩიპები და ათასობით სხვა ელექტრო მოწყობილობა
+    </p>
+    <div class="d-flex justify-content-center gap-5 flex-wrap">
+      <div class="text-center">
+        <div class="stat-num" id="totalCount">0</div>
+        <div class="stat-label">PRODUCTS</div>
+      </div>
+      <div class="text-center">
+        <div class="stat-num">6</div>
+        <div class="stat-label">CATEGORIES</div>
+      </div>
+      <div class="text-center">
+        <div class="stat-num">📦</div>
+        <div class="stat-label">FAST DELIVERY</div>
+      </div>
+    </div>
   </div>
 </section>
 
-<div class="main-layout">
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <h3>კატეგორია</h3>
-    <div id="categoryList"></div>
+<!-- ══ MAIN LAYOUT ════════════════════════════════════ -->
+<div class="container-xl py-4">
+  <div class="row g-4 align-items-start">
 
-    <h3>ფასი (₾)</h3>
-    <div class="price-inputs">
-      <input type="number" id="priceMin" placeholder="მინ." min="0">
-      <input type="number" id="priceMax" placeholder="მაქს." min="0">
-    </div>
+    <!-- ── SIDEBAR: col on desktop, side drawer on mobile ── -->
+    <div class="col-lg-3">
+      <div class="offcanvas-lg offcanvas-start" tabindex="-1" id="filterSidebar"
+           style="--bs-offcanvas-width:300px;--bs-offcanvas-bg:#fff;--bs-offcanvas-box-shadow:none">
+        <div class="offcanvas-header d-lg-none border-bottom pb-3">
+          <span class="font-tech" style="font-size:11px;letter-spacing:1.5px;color:#888">FILTERS</span>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#filterSidebar"></button>
+        </div>
+        <div class="offcanvas-body p-0 w-100">
+        <div class="sidebar-panel">
 
-    <h3>კვება</h3>
-    <div class="check-group">
-      <label class="check-item"><input type="checkbox" class="power-filter" value="battery"> 🔋 ელემენტი</label>
-      <label class="check-item"><input type="checkbox" class="power-filter" value="usb"> 🔌 USB</label>
-      <label class="check-item"><input type="checkbox" class="power-filter" value="sim"> 📶 SIM ბარათი</label>
-      <label class="check-item"><input type="checkbox" class="power-filter" value="ac"> ⚡ ქსელი</label>
-    </div>
+          <span class="sidebar-label">კატეგორია</span>
+          <div id="categoryList"></div>
 
-    <button class="btn-filter" onclick="applyFilters()">🔍 ფილტრის გამოყენება</button>
-    <button class="btn-clear" onclick="clearFilters()">✕ გასუფთავება</button>
-  </aside>
+          <hr class="sidebar-divider">
+          <span class="sidebar-label">ფასი (₾)</span>
+          <div class="d-flex gap-2 px-3 pb-2">
+            <input type="number" id="priceMin" class="form-control form-control-sm" placeholder="მინ." min="0">
+            <input type="number" id="priceMax" class="form-control form-control-sm" placeholder="მაქს." min="0">
+          </div>
 
-  <!-- CATALOG -->
-  <main>
-    <div class="catalog-header">
-      <div>
-        <div class="catalog-title" id="catalogTitle">ყველა პროდუქტი</div>
-        <div class="catalog-count" id="catalogCount"></div>
+          <hr class="sidebar-divider">
+          <span class="sidebar-label">კვება</span>
+          <div class="d-flex flex-column px-3 pb-3 gap-2">
+            <label class="form-check d-flex align-items-center gap-2 m-0">
+              <input type="checkbox" class="form-check-input power-filter flex-shrink-0" value="battery">
+              <span class="form-check-label">🔋 ელემენტი</span>
+            </label>
+            <label class="form-check d-flex align-items-center gap-2 m-0">
+              <input type="checkbox" class="form-check-input power-filter flex-shrink-0" value="usb">
+              <span class="form-check-label">🔌 USB</span>
+            </label>
+            <label class="form-check d-flex align-items-center gap-2 m-0">
+              <input type="checkbox" class="form-check-input power-filter flex-shrink-0" value="sim">
+              <span class="form-check-label">📶 SIM ბარათი</span>
+            </label>
+            <label class="form-check d-flex align-items-center gap-2 m-0">
+              <input type="checkbox" class="form-check-input power-filter flex-shrink-0" value="ac">
+              <span class="form-check-label">⚡ ქსელი</span>
+            </label>
+          </div>
+
+          <hr class="sidebar-divider" style="margin:0">
+          <button class="btn-apply" onclick="applyFilters()">გამოყენება</button>
+          <button class="btn-clear" onclick="clearFilters()">გასუფთავება</button>
+
+        </div>
+        </div><!-- /offcanvas-body -->
+      </div><!-- /offcanvas-lg -->
+    </div><!-- /col-lg-3 -->
+
+    <!-- ── CATALOG ── -->
+    <div class="col-12 col-lg-9">
+      <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+        <div>
+          <div class="catalog-title" id="catalogTitle">ყველა პროდუქტი</div>
+          <div class="text-muted mt-1" style="font-size:13px" id="catalogCount"></div>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <button class="d-lg-none btn btn-sm rounded-2 d-flex align-items-center gap-1"
+                  style="background:#111;color:rgba(255,255,255,0.75);border:1px solid rgba(255,255,255,0.12);font-family:'Space Grotesk',sans-serif;font-size:12px;padding:6px 12px"
+                  data-bs-toggle="offcanvas" data-bs-target="#filterSidebar"
+            <svg width="13" height="13" fill="none" viewBox="0 0 16 16" style="opacity:.7"><path d="M1 3h14M4 8h8M7 13h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            ფილტრი
+          </button>
+          <select class="form-select form-select-sm w-auto" id="sortSelect" onchange="renderProducts()"
+                  style="font-family:'Space Grotesk',sans-serif;font-size:13px">
+            <option value="default">სორტირება</option>
+            <option value="price-asc">ფასი: ↑</option>
+            <option value="price-desc">ფასი: ↓</option>
+            <option value="name-asc">სახელი: A-Z</option>
+          </select>
+        </div>
       </div>
-      <select class="sort-select" id="sortSelect" onchange="renderProducts()">
-        <option value="default">სორტირება</option>
-        <option value="price-asc">ფასი: ↑</option>
-        <option value="price-desc">ფასი: ↓</option>
-        <option value="name-asc">სახელი: A-Z</option>
-      </select>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-3 g-3" id="productsGrid"></div>
     </div>
-    <div class="products-grid" id="productsGrid"></div>
-  </main>
+
+  </div><!-- /row -->
 </div>
 
-<!-- PRODUCT MODAL -->
+<!-- ══ PRODUCT MODAL ══════════════════════════════════ -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
-  <div class="modal" id="modalBox">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-    <div class="modal-img" id="modalImg"></div>
-    <div class="modal-body">
-      <div class="modal-cat" id="modalCat"></div>
-      <div class="modal-title" id="modalTitle"></div>
-      <div class="modal-price" id="modalPrice"></div>
-      <div class="modal-desc" id="modalDesc"></div>
-      <div class="modal-specs-grid" id="modalSpecs"></div>
-      <div class="modal-actions" id="modalActions"></div>
+  <div class="modal-box" id="modalBox">
+    <button class="modal-close-btn" onclick="closeModal()">✕</button>
+    <div class="modal-img-area" id="modalImg"></div>
+    <div class="p-4">
+      <div class="text-uppercase mb-1" style="font-size:10px;letter-spacing:1.5px;color:#888;font-weight:600" id="modalCat"></div>
+      <div class="fw-bold mb-3" style="font-family:'Space Grotesk',sans-serif;font-size:22px;line-height:1.25" id="modalTitle"></div>
+      <div class="modal-price mb-3" id="modalPrice"></div>
+      <p class="mb-3" style="font-size:14px;line-height:1.7;color:#555" id="modalDesc"></p>
+      <div class="row g-2 mb-4" id="modalSpecs"></div>
+      <div class="d-flex gap-3 flex-wrap" id="modalActions"></div>
     </div>
   </div>
 </div>
 
-<footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <a href="#" class="logo">⚡ ElectroHub</a>
-      <p>პროფესიონალური ელექტრო მოწყობილობები საქართველოში. ხარისხი, სანდოობა, სწრაფი მომსახურება.</p>
+<!-- ══ FOOTER ═════════════════════════════════════════ -->
+<footer class="mt-5 pt-5 pb-4">
+  <div class="container-xl">
+    <div class="row g-4 mb-4">
+      <div class="col-lg-4">
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <div class="logo-icon">⚡</div>
+          <span class="font-tech fw-bold text-white" style="font-size:16px;letter-spacing:1px">ElectroHub</span>
+        </div>
+        <p style="font-size:14px;color:rgba(255,255,255,0.4);line-height:1.7;max-width:280px">
+          პროფესიონალური ელექტრო მოწყობილობები საქართველოში. ხარისხი, სანდოობა, სწრაფი მომსახურება.
+        </p>
+      </div>
+      <div class="col-6 col-lg-2 offset-lg-2">
+        <div class="footer-heading mb-3">კატეგორიები</div>
+        <a href="#" class="d-block mb-2">რაციები</a>
+        <a href="#" class="d-block mb-2">მოდემები</a>
+        <a href="#" class="d-block mb-2">კამერები</a>
+        <a href="#" class="d-block mb-2">ჩიპები</a>
+        <a href="#" class="d-block mb-2">ადაპტერები</a>
+      </div>
+      <div class="col-6 col-lg-2">
+        <div class="footer-heading mb-3">ინფო</div>
+        <a href="#" class="d-block mb-2">ჩვენს შესახებ</a>
+        <a href="#" class="d-block mb-2">მიწოდება</a>
+        <a href="#" class="d-block mb-2">გარანტია</a>
+        <a href="#" class="d-block mb-2">დაბრუნება</a>
+      </div>
+      <div class="col-12 col-lg-2">
+        <div class="footer-heading mb-3">კონტაქტი</div>
+        <a href="tel:+995555000000" class="d-block mb-2">📞 555 000 000</a>
+        <a href="https://wa.me/995555000000" target="_blank" rel="noopener noreferrer" class="d-block mb-2">💬 WhatsApp</a>
+        <a href="mailto:info@electrohub.ge" class="d-block mb-2">✉️ info@electrohub.ge</a>
+      </div>
     </div>
-    <div class="footer-col">
-      <h4>კატეგორიები</h4>
-      <a href="#">რაციები</a>
-      <a href="#">მოდემები</a>
-      <a href="#">კამერები</a>
-      <a href="#">ჩიპები</a>
-      <a href="#">ადაპტერები</a>
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 pt-4"
+         style="border-top:1px solid rgba(255,255,255,0.08);font-size:12px;color:rgba(255,255,255,0.25)">
+      <span>© 2025 ElectroHub. ყველა უფლება დაცულია.</span>
+      <span class="font-tech" style="font-size:10px;letter-spacing:1px">MADE IN 🇬🇪</span>
     </div>
-    <div class="footer-col">
-      <h4>ინფო</h4>
-      <a href="#">ჩვენს შესახებ</a>
-      <a href="#">მიწოდება</a>
-      <a href="#">გარანტია</a>
-      <a href="#">დაბრუნება</a>
-    </div>
-    <div class="footer-col">
-      <h4>კონტაქტი</h4>
-      <a href="tel:+995555000000">📞 555 000 000</a>
-      <a href="https://wa.me/995555000000">💬 WhatsApp</a>
-      <a href="mailto:info@electrohub.ge">✉️ info@electrohub.ge</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2025 ElectroHub. ყველა უფლება დაცულია.</span>
-    <span>გაკეთებულია 🇬🇪 საქართველოში</span>
   </div>
 </footer>
 
-<a href="https://wa.me/995555000000?text=გამარჯობა! მინდა შევუკვეთო..." target="_blank" class="whatsapp-fab" title="WhatsApp-ით შეკვეთა">💬</a>
+<a href="https://wa.me/995555000000?text=გამარჯობა! მინდა შევუკვეთო..."
+   target="_blank" rel="noopener noreferrer"
+   class="whatsapp-fab" title="WhatsApp-ით შეკვეთა">💬</a>
 
 <script>
-// ========== DATA (shared with admin) ==========
+// ========== DATA ==========
 const STORAGE_KEY = 'electrohub_products';
 const PHONE = '995555000000';
 
@@ -920,9 +538,6 @@ function applyFilters() {
 
   if(activeCategory !== 'all') prods = prods.filter(p => p.cat === activeCategory);
 
-  const search = document.getElementById('searchInput').value.trim().toLowerCase();
-  if(search) prods = prods.filter(p => p.name.toLowerCase().includes(search) || p.cat.toLowerCase().includes(search));
-
   const minP = parseFloat(document.getElementById('priceMin').value);
   const maxP = parseFloat(document.getElementById('priceMax').value);
   if(!isNaN(minP)) prods = prods.filter(p => p.price >= minP);
@@ -939,7 +554,6 @@ function clearFilters() {
   document.getElementById('priceMin').value = '';
   document.getElementById('priceMax').value = '';
   document.querySelectorAll('.power-filter').forEach(el => el.checked = false);
-  document.getElementById('searchInput').value = '';
   activeCategory = 'all';
   buildSidebar();
   applyFilters();
@@ -955,28 +569,32 @@ function renderProducts() {
   else if(sort === 'name-asc') prods.sort((a,b) => a.name.localeCompare(b.name));
 
   const grid = document.getElementById('productsGrid');
-  const catLabel = activeCategory === 'all' ? 'ყველა პროდუქტი' : activeCategory;
-  document.getElementById('catalogTitle').textContent = catLabel;
+  document.getElementById('catalogTitle').textContent = activeCategory === 'all' ? 'ყველა პროდუქტი' : activeCategory;
   document.getElementById('catalogCount').textContent = `${prods.length} პროდუქტი`;
 
   if(!prods.length) {
-    grid.innerHTML = `<div class="empty-state"><div class="empty-icon">🔍</div><h3>პროდუქტი ვერ მოიძებნა</h3><p>სხვა ფილტრები სცადეთ</p></div>`;
+    grid.innerHTML = `<div class="col-12"><div class="empty-state"><div style="font-size:40px;margin-bottom:12px">⌕</div><h3>პროდუქტი ვერ მოიძებნა</h3><p>სხვა ფილტრები სცადეთ</p></div></div>`;
     return;
   }
 
   grid.innerHTML = prods.map((p, i) => {
-    const badge = p.badge ? `<div class="product-badge badge-${p.badge}">${p.badge==='new'?'ახალი':p.badge==='hot'?'პოპ':p.badge==='sale'?'ფასდაკლ.':''}</div>` : '';
+    const badgeLabel = p.badge==='new'?'NEW':p.badge==='hot'?'HOT':p.badge==='sale'?'SALE':'';
+    const badge = p.badge ? `<span class="badge badge-${p.badge} position-absolute top-0 start-0 m-2 rounded-1" style="font-size:9px;letter-spacing:1.5px">${badgeLabel}</span>` : '';
     const specTags = Object.entries(p.specs||{}).slice(0,3).map(([k,v]) => `<span class="spec-tag">${v}</span>`).join('');
     const wa = `https://wa.me/${PHONE}?text=${encodeURIComponent('გამარჯობა! მინდა შეუკვეთო: '+p.name+' — '+p.price+'₾')}`;
-    return `<div class="product-card" style="animation-delay:${i*0.04}s" onclick="openModal(${p.id})">
-      <div class="product-img">${p.emoji}${badge}</div>
-      <div class="product-info">
-        <div class="product-cat">${p.cat}</div>
-        <div class="product-name">${p.name}</div>
-        <div class="product-specs">${specTags}</div>
-        <div class="product-footer">
-          <div class="product-price"><span class="currency">₾</span>${p.price}</div>
-          <a href="${wa}" target="_blank" class="btn-order" onclick="event.stopPropagation()">💬 შეკვეთა</a>
+    return `<div class="col">
+      <div class="card h-100 border-0 rounded-3 product-card" style="animation-delay:${i*0.04}s" onclick="openModal(${p.id})">
+        <div class="product-img-area rounded-top-3">${p.emoji}${badge}</div>
+        <div class="card-body d-flex flex-column p-3">
+          <div class="product-cat mb-1">${p.cat}</div>
+          <div class="product-name mb-2">${p.name}</div>
+          <div class="d-flex flex-wrap gap-1 mb-2">${specTags}</div>
+          <div class="d-flex align-items-center justify-content-between mt-auto pt-2 border-top">
+            <div class="product-price">₾${p.price}</div>
+            <a href="${wa}" target="_blank" rel="noopener noreferrer"
+               class="btn btn-wa btn-sm rounded-2 d-flex align-items-center gap-1"
+               onclick="event.stopPropagation()" style="font-size:12px">💬 შეკვეთა</a>
+          </div>
         </div>
       </div>
     </div>`;
@@ -993,12 +611,18 @@ function openModal(id) {
   document.getElementById('modalPrice').textContent = `₾${p.price}`;
   document.getElementById('modalDesc').textContent = p.desc;
   document.getElementById('modalSpecs').innerHTML = Object.entries(p.specs||{}).map(([k,v]) =>
-    `<div class="modal-spec"><div class="modal-spec-label">${k}</div><div class="modal-spec-val">${v}</div></div>`
+    `<div class="col-6"><div class="modal-spec"><div class="modal-spec-label">${k}</div><div class="modal-spec-val">${v}</div></div></div>`
   ).join('');
   const wa = `https://wa.me/${PHONE}?text=${encodeURIComponent('გამარჯობა! მინდა შევუკვეთო: '+p.name+' — '+p.price+'₾')}`;
   document.getElementById('modalActions').innerHTML = `
-    <a href="${wa}" target="_blank" class="btn-order-lg">💬 WhatsApp-ით შეკვეთა</a>
-    <a href="tel:+${PHONE}" class="btn-call">📞 დარეკვა</a>
+    <a href="${wa}" target="_blank" rel="noopener noreferrer"
+       class="btn btn-wa flex-fill d-flex align-items-center justify-content-center gap-2 py-3 rounded-3 fs-6">
+      💬 WhatsApp-ით შეკვეთა
+    </a>
+    <a href="tel:+${PHONE}"
+       class="btn btn-outline-secondary d-flex align-items-center gap-2 px-4 py-3 rounded-3 fs-6">
+      📞 დარეკვა
+    </a>
   `;
   document.getElementById('modalOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -1012,14 +636,14 @@ function closeModal(e) {
 }
 
 document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
-document.getElementById('searchInput').addEventListener('input', applyFilters);
 
 // ========== INIT ==========
 buildSidebar();
 applyFilters();
 
-// Reload if admin made changes
 window.addEventListener('focus', () => { buildSidebar(); applyFilters(); });
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
