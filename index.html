@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5th Experiential Learning Conference — Tbilisi 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0e14;
+  --surface: #111720;
+  --surface2: #161d28;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
+  --text: #e8edf5;
+  --muted: #6b7a8d;
+  --muted2: #8a9ab0;
+  --accent: #4f9cf9;
+  --accent2: #7c5cbf;
+  --lib-color: #2ecc8a;
+  --room-color: #b06af5;
+  --en-color: #4f9cf9;
+  --ru-color: #f56a6a;
+  --multi-color: #f5c842;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Manrope', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+
+/* ── HERO ── */
+.hero { position: relative; min-height: 90vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 60px 72px; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; background: var(--bg); z-index: 0; }
+.hero-bg::before { content: ''; position: absolute; top: -20%; left: -10%; width: 70%; height: 80%; background: radial-gradient(ellipse, rgba(79,156,249,0.18) 0%, transparent 70%); animation: drift1 12s ease-in-out infinite alternate; }
+.hero-bg::after  { content: ''; position: absolute; bottom: -10%; right: -5%; width: 60%; height: 70%; background: radial-gradient(ellipse, rgba(124,92,191,0.15) 0%, transparent 70%); animation: drift2 15s ease-in-out infinite alternate; }
+.hero-orb { position: absolute; top: 30%; right: 20%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(46,204,138,0.1) 0%, transparent 70%); animation: drift3 10s ease-in-out infinite alternate; }
+@keyframes drift1 { from { transform: translate(0,0) scale(1); } to { transform: translate(4%,6%) scale(1.08); } }
+@keyframes drift2 { from { transform: translate(0,0) scale(1); } to { transform: translate(-3%,-5%) scale(1.06); } }
+@keyframes drift3 { from { transform: translate(0,0); } to { transform: translate(-6%,8%); } }
+.hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px); background-size: 60px 60px; z-index: 1; }
+.hero-line { position: absolute; top: 0; right: 160px; width: 1px; height: 100%; background: linear-gradient(to bottom, transparent, rgba(79,156,249,0.3), transparent); z-index: 1; }
+.hero-content { position: relative; z-index: 2; max-width: 1100px; }
+
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 28px; padding: 7px 16px; border: 1px solid rgba(79,156,249,0.25); border-radius: 100px; backdrop-filter: blur(10px); background: rgba(79,156,249,0.05); width: fit-content; }
+.eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent); animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.5; transform:scale(0.8); } }
+
+h1 { font-family: 'Syne', sans-serif; font-size: clamp(2.8rem,7vw,5.8rem); font-weight: 800; line-height: 1.0; letter-spacing: -0.03em; margin-bottom: 8px; }
+h1 .italic { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 400; color: transparent; -webkit-text-stroke: 1.5px rgba(255,255,255,0.4); font-size: 1.05em; }
+h1 .highlight { background: linear-gradient(135deg, var(--accent), var(--lib-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero-sub { font-family: 'Syne', sans-serif; font-size: clamp(1.4rem,3vw,2.2rem); font-weight: 500; color: var(--muted2); margin-bottom: 48px; letter-spacing: -0.01em; }
+
+.hero-meta { display: flex; gap: 0; flex-wrap: wrap; border: 1px solid var(--border2); border-radius: 12px; overflow: hidden; width: fit-content; backdrop-filter: blur(20px); background: rgba(17,23,32,0.6); }
+.meta-chip { padding: 14px 28px; font-size: 13px; font-weight: 500; color: var(--muted2); border-right: 1px solid var(--border2); display: flex; align-items: center; gap: 10px; }
+.meta-chip:last-child { border-right: none; }
+.meta-chip strong { color: var(--text); font-weight: 600; }
+
+.scroll-hint { position: absolute; bottom: 32px; right: 60px; display: flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); z-index: 2; font-family: 'Syne', sans-serif; }
+.scroll-arrow { width: 18px; height: 18px; border-right: 1.5px solid var(--muted); border-bottom: 1.5px solid var(--muted); transform: rotate(45deg); animation: bounce 1.5s ease-in-out infinite; }
+@keyframes bounce { 0%,100% { transform: rotate(45deg) translate(0,0); } 50% { transform: rotate(45deg) translate(3px,3px); } }
+
+/* ── FILTER ── */
+.filter-bar { position: sticky; top: 0; z-index: 200; background: rgba(10,14,20,0.88); backdrop-filter: blur(20px) saturate(1.5); border-bottom: 1px solid var(--border2); padding: 14px 60px; }
+.filter-inner { max-width: 1100px; margin: 0 auto; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.filter-label { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-right: 8px; }
+.filter-btn { border: 1px solid var(--border2); background: transparent; padding: 6px 16px; border-radius: 100px; font-size: 12px; font-family: 'Syne', sans-serif; font-weight: 600; cursor: pointer; color: var(--muted2); transition: all 0.2s; letter-spacing: 0.02em; }
+.filter-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(79,156,249,0.06); }
+.filter-btn.active { background: var(--accent); color: #000; border-color: var(--accent); box-shadow: 0 0 16px rgba(79,156,249,0.3); }
+
+/* ── MAIN ── */
+main { max-width: 1100px; margin: 0 auto; padding: 64px 60px 100px; }
+
+/* ── LEGEND ── */
+.legend { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 56px; padding: 20px 24px; background: var(--surface); border-radius: 14px; border: 1px solid var(--border); }
+.legend-item { display: flex; align-items: center; gap: 9px; font-size: 12px; font-weight: 500; color: var(--muted2); }
+.legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+/* ── DAY HEADER ── */
+.day-section { margin-bottom: 72px; }
+.day-header { display: flex; align-items: center; gap: 24px; margin-bottom: 36px; }
+.day-badge { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; border: 1px solid rgba(79,156,249,0.3); color: var(--accent); background: rgba(79,156,249,0.07); white-space: nowrap; }
+.day-badge.d2 { border-color: rgba(176,106,245,0.3); color: var(--room-color); background: rgba(176,106,245,0.07); }
+.day-title { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; white-space: nowrap; }
+.day-line { flex: 1; height: 1px; background: linear-gradient(to right, var(--border2), transparent); }
+
+/* ── BREAK ── */
+.break-card { display: flex; align-items: center; gap: 20px; padding: 12px 22px; border-radius: 8px; margin-bottom: 20px; border: 1px dashed rgba(255,255,255,0.08); background: repeating-linear-gradient(-45deg, transparent, transparent 8px, rgba(255,255,255,0.015) 8px, rgba(255,255,255,0.015) 16px); }
+.break-time { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700; color: var(--muted); min-width: 120px; letter-spacing: 0.04em; }
+.break-label { font-size: 13px; color: var(--muted); font-style: italic; }
+
+/* ── ROWS ── */
+.parallel-row { display: grid; grid-template-columns: 100px 1fr; gap: 0 24px; margin-bottom: 20px; align-items: start; }
+.slot-time { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700; color: var(--accent); padding-top: 22px; text-align: right; line-height: 1.4; letter-spacing: 0.02em; opacity: 0.75; }
+.sessions-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 14px; }
+
+/* ── CARD ── */
+.session-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 22px 24px 20px; position: relative; overflow: hidden; transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.22s, border-color 0.22s; }
+.session-card::after { content: ''; position: absolute; inset: 0; border-radius: 14px; background: linear-gradient(135deg, rgba(255,255,255,0.025), transparent); pointer-events: none; }
+.session-card:hover { transform: translateY(-4px) scale(1.005); box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.08); border-color: var(--border2); }
+.session-card::before { content: ''; position: absolute; top: 0; left: 20px; right: 20px; height: 1px; background: linear-gradient(to right, transparent, var(--lib-color), transparent); opacity: 0.4; }
+.session-card[data-location="Room 5-2"]::before { background: linear-gradient(to right, transparent, var(--room-color), transparent); }
+.card-bar { position: absolute; left: 0; top: 20px; bottom: 20px; width: 3px; border-radius: 0 2px 2px 0; background: var(--lib-color); box-shadow: 0 0 10px var(--lib-color); }
+.session-card[data-location="Room 5-2"] .card-bar { background: var(--room-color); box-shadow: 0 0 10px var(--room-color); }
+
+.card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; gap: 8px; }
+.session-label { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+.badge-row { display: flex; gap: 5px; flex-wrap: wrap; justify-content: flex-end; }
+.badge { font-family: 'Syne', sans-serif; font-size: 9.5px; padding: 3px 9px; border-radius: 100px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
+.badge-lib  { background: rgba(46,204,138,0.1); color: var(--lib-color);   border: 1px solid rgba(46,204,138,0.2); }
+.badge-room { background: rgba(176,106,245,0.1); color: var(--room-color);  border: 1px solid rgba(176,106,245,0.2); }
+.badge-en   { background: rgba(79,156,249,0.1);  color: var(--en-color);    border: 1px solid rgba(79,156,249,0.2); }
+.badge-ru   { background: rgba(245,106,106,0.1); color: var(--ru-color);    border: 1px solid rgba(245,106,106,0.2); }
+.badge-multi{ background: rgba(245,200,66,0.1);  color: var(--multi-color); border: 1px solid rgba(245,200,66,0.2); }
+
+.card-title { font-family: 'Instrument Serif', Georgia, serif; font-size: 1.05rem; line-height: 1.35; margin-bottom: 12px; color: var(--text); }
+.card-speakers { font-size: 12.5px; color: var(--muted2); font-weight: 600; margin-bottom: 3px; }
+.card-institution { font-size: 11.5px; color: var(--muted); font-style: italic; margin-bottom: 16px; }
+.card-footer { display: flex; justify-content: flex-start; padding-top: 14px; border-top: 1px solid var(--border); }
+
+.slides-link { display: inline-flex; align-items: center; gap: 7px; font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); text-decoration: none; padding: 7px 16px; border: 1px solid rgba(79,156,249,0.25); border-radius: 100px; background: rgba(79,156,249,0.06); transition: all 0.18s; }
+.slides-link:hover { background: var(--accent); color: #000; border-color: var(--accent); box-shadow: 0 4px 20px rgba(79,156,249,0.35); transform: translateY(-1px); }
+.slides-link svg { width: 12px; height: 12px; flex-shrink: 0; }
+.no-slides { font-size: 11px; color: var(--muted); font-style: italic; display: flex; align-items: center; gap: 6px; opacity: 0.6; }
+.no-slides::before { content: '—'; }
+
+.hidden { display: none !important; }
+
+@media (max-width: 768px) {
+  .hero { padding: 80px 24px 56px; min-height: auto; }
+  .filter-bar { padding: 12px 20px; }
+  main { padding: 40px 20px 80px; }
+  .parallel-row { grid-template-columns: 76px 1fr; gap: 0 12px; }
+  .sessions-group { grid-template-columns: 1fr; }
+  .scroll-hint { display: none; }
+  .hero-meta { flex-direction: column; border-radius: 10px; }
+  .meta-chip { border-right: none; border-bottom: 1px solid var(--border2); }
+  .meta-chip:last-child { border-bottom: none; }
+}
+
+@keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+.hero-content > * { animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) both; }
+.hero-eyebrow { animation-delay: 0.05s; }
+h1 { animation-delay: 0.15s; }
+.hero-sub { animation-delay: 0.22s; }
+.hero-meta { animation-delay: 0.3s; }
+.session-card { animation: fadeUp 0.5s cubic-bezier(0.22,1,0.36,1) both; animation-delay: calc(var(--i, 0) * 50ms); }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-line"></div>
+  <div class="hero-orb"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow"><span class="eyebrow-dot"></span>Building B · Program Schedule</div>
+    <h1>5<span class="italic">th</span> <span class="highlight">Experiential</span><br>Learning <span class="italic">Conference</span></h1>
+    <div class="hero-sub">Tbilisi &nbsp;·&nbsp; 2026</div>
+    <div class="hero-meta">
+      <div class="meta-chip">📅 <span>2–3 May 2026</span></div>
+      <div class="meta-chip">📍 <strong>European School, Tbilisi</strong></div>
+      <div class="meta-chip">🏛 <span>Library &amp; Room 5-2</span></div>
+      <div class="meta-chip">🌐 <span>IB International Schools</span></div>
+    </div>
+  </div>
+  <div class="scroll-hint">Scroll <div class="scroll-arrow"></div></div>
+</section>
+
+<!-- FILTER -->
+<div class="filter-bar">
+  <div class="filter-inner">
+    <span class="filter-label">Filter</span>
+    <button class="filter-btn active" onclick="filterBy('all',this)">All sessions</button>
+    <button class="filter-btn" onclick="filterBy('day1',this)">Sat 2 May</button>
+    <button class="filter-btn" onclick="filterBy('day2',this)">Sun 3 May</button>
+    <button class="filter-btn" onclick="filterBy('Library',this)">Library</button>
+    <button class="filter-btn" onclick="filterBy('Room 5-2',this)">Room 5-2</button>
+    <button class="filter-btn" onclick="filterBy('EN',this)">🇬🇧 EN</button>
+    <button class="filter-btn" onclick="filterBy('RU',this)">🇷🇺 RU</button>
+    <button class="filter-btn" onclick="filterBy('slides',this)">📎 With Slides</button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--lib-color);box-shadow:0 0 6px var(--lib-color)"></div>Library</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--room-color);box-shadow:0 0 6px var(--room-color)"></div>Room 5-2</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--en-color);box-shadow:0 0 6px var(--en-color)"></div>English</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--ru-color);box-shadow:0 0 6px var(--ru-color)"></div>Russian</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--multi-color);box-shadow:0 0 6px var(--multi-color)"></div>GE / EN</div>
+  </div>
+
+  <!-- ══ DAY 1 ══ -->
+  <div class="day-section" data-day="day1">
+    <div class="day-header">
+      <span class="day-badge">Day 1</span>
+      <div class="day-title">Saturday, 2 May</div>
+      <div class="day-line"></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="slot-time">10:10<br>11:10</div>
+      <div class="sessions-group">
+        <div class="session-card" data-location="Room 5-2" data-lang="EN" data-day="day1" style="--i:1">
+          <div class="card-bar"></div>
+          <div class="card-top"><span class="session-label">Session 1</span><div class="badge-row"><span class="badge badge-room">Room 5-2</span><span class="badge badge-en">EN</span></div></div>
+          <div class="card-title">Linking MYP planning to TOK thinking</div>
+          <div class="card-speakers">Vladimir Rybkin &amp; Elvina Nazifova</div>
+          <div class="card-institution">International Talent Academy of Tashkent</div>
+          <div class="card-footer"><a class="slides-link" href="https://docs.google.com/presentation/d/1d6aEq0tP0-ypppuIXTUfR82mIG7l38av/edit?usp=sharing&ouid=106034380931950587047&rtpof=true&sd=true" target="_blank"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="2" width="14" height="11" rx="1"/><path d="M5 15h6M8 13v2"/></svg>Slides</a></div>
+        </div>
+        <div class="session-card" data-location="Library" data-lang="EN" data-day="day1" style="--i:2">
+          <div class="card-bar"></div>
+          <div class="card-top"><span class="session-label">Session 2</span><div class="badge-row"><span class="badge badge-lib">Library</span><span class="badge badge-en">EN</span></div></div>
+          <div class="card-title">Strategies to Differentiate Different Types of Assessment</div>
+          <div class="card-speakers">Ketevan Papava &amp; Daryl Fernandez</div>
+          <div class="card-institution">European School</div>
+          <div class="card-footer"><a class="slides-link" href="https://docs.google.com/presentation/d/1fzjFt5kicXFlcQJYxJakMgbQQ6QWN1Bk/edit?usp=sharing&ouid=106034380931950587047&rtpof=true&sd=true" target="_blank"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="2" width="14" height="11" rx="1"/><path d="M5 15h6M8 13v2"/></svg>პრეზენტაცია</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="slot-time">12:00<br>13:00</div>
+      <div class="sessions-group">
+        <div class="session-card" data-location="Library" data-lang="EN" data-day="day1" style="--i:3">
+          <div class="card-bar"></div>
+          <div class="card-top"><span class="session-label">Session 2</span><div class="badge-row"><span class="badge badge-lib">Library</span><span class="badge badge-en">EN</span></div></div>
+          <div class="card-title">Empathy as a Way of Knowing? Bridging Theory and Practice in TOK</div>
+          <div class="card-speakers">Lasha Matiashvili</div>
+          <div class="card-institution">European School</div>
+          <div class="card-footer"><a class="slides-link" href="https://docs.google.com/presentation/d/1krrw8nGsG8-C4WrdJ91E3J_9yesFOY3u/edit?usp=sharing&ouid=106034380931950587047&rtpof=true&sd=true" target="_blank"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="2" width="14" height="11" rx="1"/><path d="M5 15h6M8 13v2"/></svg>პრეზენტაცია</a></div>
+        </div>
+        <div class="session-card" data-location="Room 5-2" data-lang="GE/EN" data-day="day1" style="--i:4">
+          <div class="card-bar"></div>
+          <div class="card-top"><span class="session-label">Session 2</span><div class="badge-row"><span class="badge badge-room">Room 5-2</span><span class="badge badge-multi">GE / EN</span></div></div>
+          <div class="card-title">Differentiating Instruction &amp; Assessment in IB MYP Language and Literature</div>
+          <div class="card-speakers">Eka Dughashvili &amp; Rusudan Beridze</div>
+          <div class="card-institution">European School</div>
+          <div class="card-footer"><a class="slides-link" href="https://docs.google.com/presentation/d/18PSet5z9oyeWX0ei51qDgmUa74aeFsKG/edit?usp=sharing&ouid=106034380931950587047&rtpof=true&sd=true" target="_blank"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="2" width="14" height="11" rx="1"/><path d="M5 15h6M8 13v2"/></svg>Slides</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="break-card"><span class="break-time">13:05 — 14:05</span><span class="break-label">🍽&nbsp; Lunch Break</span></div>
+
+    <div class="parallel-row">
+      <div class="slot-time">14:00<br>15:00</div>
+      <div class="sessions-group">
+        <div class="session-card" data-location="Library" data-lang="EN" data-day="day1" style="--i:5">
+          <div class="card-bar"></div>
+          <div class="card-top"><span class="session-label">Session 3</span><div class="badge-row"><span class="badge badge-lib">Library</span><span class="badge badge-en">EN</span></div></div>
+          <div class="card-title">New Extended Essay assessment criteria and the new subject-specific guidance</div>
+          <div class="card-speakers">Oussama Bader</div>
+          <div class="card-institution">European School</div>
+          <div class="card-footer"><a class="slides-link" href="https://docs.google.com/presentation/d/12s8WgpuHAPfJZ__7Rtzy8xD0e_wkXaP0/edit?usp=sharing&ouid=106034380931950587047&rtpof=true&sd=true" target="_blank"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="2" width="14" height="11" rx="1"/><path d="M5 15h6M8 13v2"/></svg>პრეზენტაცია</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="slot-time">15:05<br>16:05</div>
+      <div class="sessions-group">
+        <div class="session-card" data-location="Library" data-lang="RU" data-day="day1" style="--i:6">
+          <div class="card-bar"></div>
+          <div class="card-top"><span class="session-label">Session 4</span><div class="badge-row"><span class="badge badge-lib">Library</span><span class="badge badge-ru">RU</span></div></div>
+          <div class="card-title">From National Roots to Global Mindset: Developing IB Learner Profile Attributes through Ethnoculture</div>
+          <div class="card-speakers">Shynar Saukatova</div>
+          <div class="card-institution">International Steppe School of Astana</div>
+          <div class="card-footer"><span class="no-slides">Slides not available</span></div>
+        </div>
+        <div class="session-card" data-location="Room 5-2" data-lang="RU" data-day="day1" style="--i:7">
+          <div class="card-bar"></div>
+          <div class="card-top"><span class="session-label">Session 4</span><div class="badge-row"><span class="badge badge-room">Room 5-2</span><span class="badge badge-ru">RU</span></div></div>
+          <div class="card-title">Индивидуальный подход и поддержка агентности ученика в начальной школе</div>
+          <div class="card-speakers">Zhanar Zhangazakova &amp; Mokhira Khassanova</div>
+          <div class="card-institution">Quantum TECH School</div>
+          <div class="card-footer"><a class="slides-link" href="https://docs.google.com/presentation/d/10XWPV1ZvPTi56JeFUblsMTYIBsgn3-Fb/edit?usp=sharing&ouid=106034380931950587047&rtpof=true&sd=true" target="_blank"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="2" width="14" height="11" rx="1"/><path d="M5 15h6M8 13v2"/></svg>Slides</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="slot-time">16:20<br>17:20</div>
+      <div class="sessions-group">
+        <div class="session-card" data-location="Library" data-lang="RU" data-day="day1" style="--i:8">
+          <div class="card-bar"></div>
+          <div class="card-top"><span class="session-label">Session 5</span><div class="badge-row"><span class="badge badge-lib">Library</span><span class="badge badge-ru">RU</span></div></div>
+          <div class="card-title">От анализа к опыту: разные пути осмысления литературного текста</div>
+          <div class="card-speakers">Maia Revia</div>
+          <div class="card-institution">European School</div>
+          <div class="card-footer"><a class="slides-link" href="https://docs.google.com/presentation/d/10XWPV1ZvPTi56JeFUblsMTYIBsgn3-Fb/edit?usp=sharing&ouid=106034380931950587047&rtpof=true&sd=true" target="_blank"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="2" width="14" height="11" rx="1"/><path d="M5 15h6M8 13v2"/></svg>პრეზენტაცია</a></div>
+        </div>
+        <div class="session-card" data-location="Room 5-2" data-lang="EN" data-day="day1" style="--i:9">
+          <div class="card-bar"></div>
+          <div class="card-top"><span class="session-label">Session 5</span><div class="badge-row"><span class="badge badge-room">Room 5-2</span><span class="badge badge-en">EN</span></div></div>
+          <div class="card-title">Digital Media Production through Conceptual-Visual Modelling (CVM)</div>
+          <div class="card-speakers">Kuralay Zhilkibekova</div>
+          <div class="card-institution">Nazarbayev Intellectual School of Astana</div>
+          <div class="card-footer"><a class="slides-link" href="https://docs.google.com/presentation/d/1ShT3o37dA8aw9MkdKpGduoIQJW74c-zd/edit?usp=sharing&ouid=106034380931950587047&rtpof=true&sd=true" target="_blank"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="2" width="14" height="11" rx="1"/><path d="M5 15h6M8 13v2"/></svg>Slides</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="slot-time">17:25<br>18:10</div>
+      <div class="sessions-group">
+        <div class="session-card" data-location="Library" data-lang="EN" data-day="day1" style="--i:10">
+          <div class="card-bar"></div>
+          <div class="card-top"><span class="session-label">Special Meeting</span><div class="badge-row"><span class="badge badge-lib">Library</span><span class="badge badge-en">EN</span></div></div>
+          <div class="card-title">Meeting with International Schools Services (ISS)</div>
+          <div class="card-speakers">Stefanie Zhang</div>
+          <div class="card-institution">ISS (International Schools Services)</div>
+          <div class="card-footer"><a class="slides-link" href="https://docs.google.com/presentation/d/1Wm3HyAlijvSF-L_rB1yi3Df_ZDakUttN/edit?usp=sharing&ouid=106034380931950587047&rtpof=true&sd=true" target="_blank"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="2" width="14" height="11" rx="1"/><path d="M5 15h6M8 13v2"/></svg>Slides</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ DAY 2 ══ -->
+  <div class="day-section" data-day="day2">
+    <div class="day-header">
+      <span class="day-badge d2">Day 2</span>
+      <div class="day-title">Sunday, 3 May</div>
+      <div class="day-line"></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="slot-time">09:00<br>10:00</div>
+      <div class="sessions-group">
+        <div class="session-card" data-location="Library" data-lang="EN" data-day="day2" style="--i:1">
+          <div class="card-bar"></div>
+          <div class="card-top"><span class="session-label">Session 1 · Panel Discussion</span><div class="badge-row"><span class="badge badge-lib">Library</span><span class="badge badge-en">EN</span></div></div>
+          <div class="card-title">Skills for the Future: Developing a tourism and hospitality workforce through the IB Career-related Programme</div>
+          <div class="card-speakers">Vedrana Pavletić, Nino Sachaleli &amp; Nino Udo</div>
+          <div class="card-institution">CP Coordinator · European Azerbaijan School</div>
+          <div class="card-footer"><span class="no-slides">Slides not available</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="break-card"><span class="break-time">10:00 — 10:10</span><span class="break-label">→&nbsp; Transition time</span></div>
+
+    <div class="parallel-row">
+      <div class="slot-time">10:10<br>11:10</div>
+      <div class="sessions-group">
+        <div class="session-card" data-location="Library" data-lang="EN" data-day="day2" style="--i:2">
+          <div class="card-bar"></div>
+          <div class="card-top"><span class="session-label">Session 6</span><div class="badge-row"><span class="badge badge-lib">Library</span><span class="badge badge-en">EN</span></div></div>
+          <div class="card-title">How to Break Up with Our Tabs</div>
+          <div class="card-speakers">Rico Chow</div>
+          <div class="card-institution">Chief Product Officer, SiSi</div>
+          <div class="card-footer"><span class="no-slides">Slides not available</span></div>
+        </div>
+        <div class="session-card" data-location="Room 5-2" data-lang="EN" data-day="day2" style="--i:3">
+          <div class="card-bar"></div>
+          <div class="card-top"><span class="session-label">Session 6</span><div class="badge-row"><span class="badge badge-room">Room 5-2</span><span class="badge badge-en">EN</span></div></div>
+          <div class="card-title">Navigating the Digital World: Empowering Safe &amp; Smart Students · Responsible AI: Teaching Ethics in the Age of Smart Machines</div>
+          <div class="card-speakers">Ani Bezhuashvili</div>
+          <div class="card-institution">European School</div>
+          <div class="card-footer"><a class="slides-link" href="https://docs.google.com/presentation/d/1yA_kfkeXRE66WQVnDtwATEoFW1NJOWq3/edit?usp=sharing&ouid=106034380931950587047&rtpof=true&sd=true" target="_blank"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="2" width="14" height="11" rx="1"/><path d="M5 15h6M8 13v2"/></svg>პრეზენტაცია</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="break-card"><span class="break-time">11:10 — 11:30</span><span class="break-label">☕&nbsp; Coffee Break</span></div>
+
+    <div class="parallel-row">
+      <div class="slot-time">11:30<br>12:30</div>
+      <div class="sessions-group">
+        <div class="session-card" data-location="Library" data-lang="RU" data-day="day2" style="--i:4">
+          <div class="card-bar"></div>
+          <div class="card-top"><span class="session-label">Session 7</span><div class="badge-row"><span class="badge badge-lib">Library</span><span class="badge badge-ru">RU</span></div></div>
+          <div class="card-title">Литературный текст как поле исследования: концептуализация обучения через проблемные вопросы в IB</div>
+          <div class="card-speakers">Dametken Syzdykbayeva</div>
+          <div class="card-institution">Nazarbayev Intellectual School of Astana</div>
+          <div class="card-footer"><a class="slides-link" href="https://docs.google.com/presentation/d/1-yC7IeNDWEX9RHBRCM1AUBBijcX7Z-U3/edit?usp=sharing&ouid=106034380931950587047&rtpof=true&sd=true" target="_blank"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="2" width="14" height="11" rx="1"/><path d="M5 15h6M8 13v2"/></svg>Slides</a></div>
+        </div>
+        <div class="session-card" data-location="Room 5-2" data-lang="EN" data-day="day2" style="--i:5">
+          <div class="card-bar"></div>
+          <div class="card-top"><span class="session-label">Session 7</span><div class="badge-row"><span class="badge badge-room">Room 5-2</span><span class="badge badge-en">EN</span></div></div>
+          <div class="card-title">Understand the MYP Design Cycle and Its Stages</div>
+          <div class="card-speakers">Aslan Kaliakhmetov</div>
+          <div class="card-institution">Riviera International School of Astana</div>
+          <div class="card-footer"><a class="slides-link" href="https://docs.google.com/presentation/d/1ZZ0J12iehPWB3pdjKYt07gyUtdyks3SX/edit?usp=sharing&ouid=106034380931950587047&rtpof=true&sd=true" target="_blank"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="2" width="14" height="11" rx="1"/><path d="M5 15h6M8 13v2"/></svg>Slides</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="slot-time">12:35<br>13:35</div>
+      <div class="sessions-group">
+        <div class="session-card" data-location="Library" data-lang="EN" data-day="day2" style="--i:6">
+          <div class="card-bar"></div>
+          <div class="card-top"><span class="session-label">Session 8</span><div class="badge-row"><span class="badge badge-lib">Library</span><span class="badge badge-en">EN</span></div></div>
+          <div class="card-title">Empowering Students for Top University Admissions: Integrating Olympiads, Research, and IB Portfolio Development</div>
+          <div class="card-speakers">Gulzar Abbasbayli</div>
+          <div class="card-institution">European Azerbaijan School</div>
+          <div class="card-footer"><span class="no-slides">Slides not available</span></div>
+        </div>
+        <div class="session-card" data-location="Room 5-2" data-lang="EN" data-day="day2" style="--i:7">
+          <div class="card-bar"></div>
+          <div class="card-top"><span class="session-label">Session 8</span><div class="badge-row"><span class="badge badge-room">Room 5-2</span><span class="badge badge-en">EN</span></div></div>
+          <div class="card-title">Embedding College Counseling into IBCP: Practical Models and Lessons</div>
+          <div class="card-speakers">Bolat Nassygazy</div>
+          <div class="card-institution">Astana Garden International School</div>
+          <div class="card-footer"><a class="slides-link" href="https://drive.google.com/file/d/1qDmK1Q-ykuxIcIYK4h1Htk4loPJEvWDo/view?usp=sharing" target="_blank"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="2" width="14" height="11" rx="1"/><path d="M5 15h6M8 13v2"/></svg>პრეზენტაცია</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="break-card"><span class="break-time">13:35 — 14:35</span><span class="break-label">🍽&nbsp; Lunch Break</span></div>
+
+    <div class="parallel-row">
+      <div class="slot-time">14:35<br>15:35</div>
+      <div class="sessions-group">
+        <div class="session-card" data-location="Room 5-2" data-lang="EN" data-day="day2" style="--i:8">
+          <div class="card-bar"></div>
+          <div class="card-top"><span class="session-label">Session 9</span><div class="badge-row"><span class="badge badge-room">Room 5-2</span><span class="badge badge-en">EN</span></div></div>
+          <div class="card-title">Experiential Learning as a Path to Improve the Future of Education</div>
+          <div class="card-speakers">Tural Abbasov</div>
+          <div class="card-institution">Modern Educational Complex</div>
+          <div class="card-footer"><a class="slides-link" href="https://docs.google.com/presentation/d/1B4t5EcnV_qXAhU9Xze2KL-IqPceI8gXO/edit?usp=sharing&ouid=106034380931950587047&rtpof=true&sd=true" target="_blank"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="2" width="14" height="11" rx="1"/><path d="M5 15h6M8 13v2"/></svg>Slides</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="slot-time">15:40<br>16:40</div>
+      <div class="sessions-group">
+        <div class="session-card" data-location="Library" data-lang="RU" data-day="day2" style="--i:9">
+          <div class="card-bar"></div>
+          <div class="card-top"><span class="session-label">Session 10</span><div class="badge-row"><span class="badge badge-lib">Library</span><span class="badge badge-ru">RU</span></div></div>
+          <div class="card-title">Поддержка персонального проекта MYP: роли участников, ожидания и лучшие практики</div>
+          <div class="card-speakers">Nana Patsia</div>
+          <div class="card-institution">Head Librarian · European School</div>
+          <div class="card-footer"><a class="slides-link" href="https://docs.google.com/presentation/d/1MsSuNbi-3cx32SoZQDzabXWpVKaMlNbA/edit?usp=sharing&ouid=106034380931950587047&rtpof=true&sd=true" target="_blank"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="2" width="14" height="11" rx="1"/><path d="M5 15h6M8 13v2"/></svg>პრეზენტაცია</a></div>
+        </div>
+        <div class="session-card" data-location="Room 5-2" data-lang="EN" data-day="day2" style="--i:10">
+          <div class="card-bar"></div>
+          <div class="card-top"><span class="session-label">Session 10</span><div class="badge-row"><span class="badge badge-room">Room 5-2</span><span class="badge badge-en">EN</span></div></div>
+          <div class="card-title">From Enquiry to Assessed Evidence in MYP Individuals and Society</div>
+          <div class="card-speakers">Tamar Avaliani &amp; Nino Donadze</div>
+          <div class="card-institution">European School</div>
+          <div class="card-footer"><a class="slides-link" href="https://docs.google.com/presentation/d/1j74gamUSgNAkmv86aaQzwRPV4L6tJzjZ/edit?usp=sharing&ouid=106034380931950587047&rtpof=true&sd=true" target="_blank"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="2" width="14" height="11" rx="1"/><path d="M5 15h6M8 13v2"/></svg>პრეზენტაცია</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+function filterBy(type, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const cards = document.querySelectorAll('.session-card');
+  const rows  = document.querySelectorAll('.parallel-row');
+  const days  = document.querySelectorAll('.day-section');
+  if (type === 'all') {
+    cards.forEach(c => c.classList.remove('hidden'));
+    rows.forEach(r => r.classList.remove('hidden'));
+    days.forEach(d => d.classList.remove('hidden'));
+    return;
+  }
+  cards.forEach(card => {
+    let show = false;
+    if (type === 'day1' || type === 'day2') show = card.dataset.day === type;
+    else if (type === 'slides') show = !!card.querySelector('.slides-link');
+    else if (type === 'EN')  show = card.dataset.lang && card.dataset.lang.includes('EN');
+    else if (type === 'RU')  show = card.dataset.lang === 'RU';
+    else show = card.dataset.location === type;
+    card.classList.toggle('hidden', !show);
+  });
+  rows.forEach(row => { row.classList.toggle('hidden', row.querySelectorAll('.session-card:not(.hidden)').length === 0); });
+  days.forEach(day => { day.classList.toggle('hidden', day.querySelectorAll('.parallel-row:not(.hidden)').length === 0); });
+}
+</script>
+</body>
+</html>
