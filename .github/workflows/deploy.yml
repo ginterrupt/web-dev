@@ -1,0 +1,23 @@
+name: Deploy to Hetzner Server
+
+
+on:
+  push:
+    branches:
+      - main
+
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to server
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: main
+          port: 2278
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            /home/main/deploy-webhook.sh
+
